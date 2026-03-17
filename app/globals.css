@@ -1,0 +1,190 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+/* @import "shadcn/tailwind.css"; */
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: #0A0908;
+  --color-foreground: #EDE8DF;
+  --font-sans: var(--font-outfit);
+  --font-display: var(--font-display);
+  --font-mono: var(--font-mono);
+  --color-section-border: #1e1c1a;
+  --color-primary: #E8A045;
+  --color-accent: #E8A045;
+  --color-card: #131210;
+  --color-muted-foreground: #555550;
+  --color-border: rgba(237, 232, 223, 0.1);
+  --color-ring: #E8A045;
+  --radius-lg: 1rem;
+}
+
+:root {
+  --background: #0A0908;
+  --foreground: #EDE8DF;
+  --card: #131210;
+  --card-foreground: #EDE8DF;
+  --popover: #131210;
+  --popover-foreground: #EDE8DF;
+  --primary: #E8A045;
+  --primary-foreground: #0A0908;
+  --secondary: #131210;
+  --secondary-foreground: #EDE8DF;
+  --muted: #131210;
+  --muted-foreground: #555550;
+  --accent: #E8A045;
+  --accent-foreground: #0A0908;
+  --destructive: #ef4444;
+  --destructive-foreground: #EDE8DF;
+  --border: rgba(237, 232, 223, 0.1);
+  --input: rgba(237, 232, 223, 0.05);
+  --ring: #E8A045;
+  --radius: 1rem;
+}
+
+.dark {
+  --background: #0A0908;
+  --foreground: #EDE8DF;
+  --card: #131210;
+  --card-foreground: #EDE8DF;
+  --popover: #131210;
+  --popover-foreground: #EDE8DF;
+  --primary: #E8A045;
+  --primary-foreground: #0A0908;
+  --secondary: #131210;
+  --secondary-foreground: #EDE8DF;
+  --muted: #131210;
+  --muted-foreground: #555550;
+  --accent: #E8A045;
+  --accent-foreground: #0A0908;
+  --destructive: #ef4444;
+  --destructive-foreground: #EDE8DF;
+  --border: rgba(237, 232, 223, 0.1);
+  --input: rgba(237, 232, 223, 0.05);
+  --ring: #E8A045;
+}
+
+@layer base {
+  * {
+    border-color: rgba(237, 232, 223, 0.1);
+    outline-color: rgba(232, 160, 69, 0.5);
+    /* Remove any implicit blue vignettes or shadows */
+    box-shadow: none !important;
+  }
+
+  /* Restore shadows for specific elements only */
+  button,
+  .shadow-accent,
+  .shadow-xl,
+  .shadow-2xl,
+  .glass {
+    box-shadow: unset !important;
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 300ms;
+    font-family: var(--font-outfit), sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  /* Typography Hierarchy System */
+  h1,
+  .h1-display {
+    font-family: var(--font-display), serif;
+    @apply text-5xl font-extrabold leading-[1.1] tracking-[-0.03em] mb-8;
+  }
+
+  @media (min-width: 768px) {
+
+    h1,
+    .h1-display {
+      @apply text-6xl lg:text-7xl;
+    }
+  }
+
+  h2,
+  .h2-section {
+    font-family: var(--font-display), serif;
+    @apply text-4xl font-bold leading-tight mb-6;
+  }
+
+  @media (min-width: 768px) {
+
+    h2,
+    .h2-section {
+      @apply text-6xl;
+    }
+  }
+
+  h3,
+  .h3-card {
+    font-family: var(--font-display), serif;
+    @apply text-2xl font-bold mb-4;
+  }
+
+  @media (min-width: 768px) {
+
+    h3,
+    .h3-card {
+      @apply text-3xl;
+    }
+  }
+
+  p,
+  .body-base {
+    @apply text-base leading-relaxed font-light text-muted-foreground;
+  }
+
+  .body-large {
+    @apply text-lg leading-relaxed font-light text-muted-foreground;
+  }
+
+  @media (min-width: 768px) {
+    .body-large {
+      @apply text-xl;
+    }
+  }
+
+  .label-mono {
+    font-family: var(--font-mono), monospace;
+    @apply text-[10px] uppercase tracking-[0.2em] text-accent font-bold;
+  }
+}
+
+@layer utilities {
+  .glass {
+    @apply bg-background/60 backdrop-blur-xl border border-white/10 dark:border-white/5;
+  }
+
+  .text-gradient {
+    @apply bg-gradient-to-br from-primary to-accent bg-clip-text text-transparent;
+  }
+
+  .btn-primary {
+    @apply h-14 px-10 rounded-full font-bold text-lg bg-accent text-[#0A0908] hover:scale-[1.02] active:scale-95 transition-all shadow-xl shadow-accent/20;
+  }
+
+  .section-padding {
+    @apply py-20 px-6 md:px-12 lg:px-24;
+  }
+
+  .section-border {
+    @apply border-t border-[#1e1c1a];
+  }
+
+  @keyframes portfolio-scroll {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-3000px); }
+  }
+
+  .animate-portfolio-scroll {
+    animation: portfolio-scroll 40s linear infinite;
+  }
+}

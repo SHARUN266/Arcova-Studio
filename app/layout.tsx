@@ -46,7 +46,7 @@ export default function RootLayout({
       <body
         className={`${outfit.variable} ${syne.variable} ${mono.variable} antialiased selection:bg-primary/30 selection:text-white`}
       >
-        <GoogleAnalytics ga_id={process.env.NEXT_PUBLIC_GA_ID || "G-XXXXXXXXXX"} />
+        <GoogleAnalytics />
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"

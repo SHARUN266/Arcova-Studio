@@ -132,7 +132,7 @@ async function getDbPosts(): Promise<BlogPost[]> {
       content: row.content,
     }));
   } catch (error) {
-    console.error("Error fetching blog posts from DB:", error);
+    console.warn("⚠️ Error fetching blog posts from DB (falling back to static):", error);
     return [];
   }
 }

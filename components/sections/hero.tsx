@@ -82,10 +82,10 @@ export function Hero() {
     >
 
       {/* Decorative Grid Element */}
-      <div ref={decoRef} className="absolute left-[-10%] top-[20%] w-[500px] h-[500px] border border-accent/10 rounded-full pointer-events-none" />
+      <div ref={decoRef} className="absolute left-[-10%] top-[20%] w-[300px] h-[300px] sm:w-[400px] sm:h-[400px] md:w-[500px] md:h-[500px] border border-accent/10 rounded-full pointer-events-none" />
 
       {/* Golden Taj Mahal Illustration */}
-      <div ref={TajRef} className="absolute right-[-5%] md:right-0 top-1/2 -translate-y-1/2 pointer-events-none select-none w-[500px] md:w-[650px] lg:w-[750px] h-[500px] md:h-[650px] lg:h-[750px]">
+      <div ref={TajRef} className="absolute right-[-5%] md:right-0 top-1/2 -translate-y-1/2 pointer-events-none select-none w-[350px] sm:w-[450px] md:w-[650px] lg:w-[750px] h-[350px] sm:h-[450px] md:h-[650px] lg:h-[750px]">
         <Image
           src="/taj-mahal-illustration.png"
           alt=""
@@ -99,7 +99,7 @@ export function Hero() {
       <div ref={contentRef} className="container mx-auto px-6 relative z-10">
         <div className="max-w-4xl">
           {/* Hero Badges */}
-          <div className="flex flex-wrap items-center gap-4 mb-8">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-8">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
@@ -123,7 +123,7 @@ export function Hero() {
 
           <h1
             ref={h1Ref}
-            className="text-5xl md:text-6xl lg:text-7xl font-extrabold leading-[1.1] tracking-[-0.02em] mb-8 font-sans"
+            className="h1-display"
           >
             Agra&apos;s <br />
             <span className="text-accent">Premium</span> Web Studio.
@@ -134,25 +134,25 @@ export function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 1.2 }}
-            className="grid grid-cols-2 md:grid-cols-3 gap-8 mb-12 border-l border-accent/10 pl-6 md:pl-8"
+            className="grid grid-cols-2 md:grid-cols-3 gap-y-8 gap-x-4 md:gap-8 mb-16 border-l-2 border-accent/20 pl-6 md:pl-8"
           >
             <div>
-              <div className="text-3xl md:text-4xl font-black text-accent mb-1 font-display">
+              <div className="text-4xl md:text-5xl font-black text-accent mb-2 font-display">
                 <Counter value={50} />+
               </div>
-              <p className="text-xs uppercase tracking-[0.2em] font-bold opacity-40">Websites Delivered</p>
+              <p className="text-[10px] md:text-xs uppercase tracking-[0.2em] font-bold opacity-60">Websites Delivered</p>
             </div>
             <div>
-              <div className="text-3xl md:text-4xl font-black text-accent mb-1 font-display">
+              <div className="text-4xl md:text-5xl font-black text-accent mb-2 font-display">
                 <Counter value={40} />+
               </div>
-              <p className="text-xs uppercase tracking-[0.2em] font-bold opacity-40">Happy Clients</p>
+              <p className="text-[10px] md:text-xs uppercase tracking-[0.2em] font-bold opacity-60">Happy Clients</p>
             </div>
             <div className="hidden md:block">
-              <div className="text-3xl md:text-4xl font-black text-accent mb-1 font-display">
+              <div className="text-4xl md:text-5xl font-black text-accent mb-2 font-display">
                 <Counter value={2} />+
               </div>
-              <p className="text-xs uppercase tracking-[0.2em] font-bold opacity-40">Years Experience</p>
+              <p className="text-[10px] md:text-xs uppercase tracking-[0.2em] font-bold opacity-60">Years Experience</p>
             </div>
           </motion.div>
 
@@ -161,7 +161,7 @@ export function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 1.5 }}
-            className="text-lg md:text-xl italic text-[#555550] mb-12 max-w-2xl"
+            className="body-large italic text-[#555550] mb-12 max-w-2xl"
           >
             We build what scales.
           </motion.p>
@@ -171,19 +171,19 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 1.8 }}
-            className="flex flex-col sm:flex-row items-center gap-6"
+            className="flex flex-col sm:flex-row items-stretch sm:items-center gap-6"
           >
             <Button
               size="lg"
-              className="rounded-full px-10 h-16 text-lg font-bold bg-accent text-accent-foreground hover:scale-[1.02] transition-transform shadow-xl shadow-accent/20 group uppercase tracking-widest border-0"
+              className="rounded-full px-10 h-16 md:h-20 text-base md:text-lg font-bold bg-accent text-accent-foreground hover:scale-[1.02] transition-transform shadow-xl shadow-accent/20 group uppercase tracking-widest border-0 w-full sm:w-auto"
               onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
             >
               Start Your Project
-              <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={20} />
+              <ArrowRight className="ml-3 group-hover:translate-x-1 transition-transform" size={20} />
             </Button>
             <Button
               variant="ghost"
-              className="text-lg hover:bg-white/5 h-16 px-8 rounded-full"
+              className="text-base md:text-lg hover:bg-white/5 h-16 md:h-20 px-8 rounded-full border border-white/10 sm:border-transparent w-full sm:w-auto"
               onClick={() => document.getElementById('work')?.scrollIntoView({ behavior: 'smooth' })}
             >
               View Our Work

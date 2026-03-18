@@ -36,10 +36,10 @@ export function WhyArcova() {
     <section className="section-padding relative overflow-hidden bg-[#0D0D0D]">
       {/* Background Image Integration */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <Image 
-          src="/hero_background.jpg" 
-          alt="Agra Growth Background" 
-          fill 
+        <Image
+          src="/hero_background.jpg"
+          alt="Agra Growth Background"
+          fill
           className="object-cover opacity-30 grayscale brightness-[0.4]"
           priority
         />
@@ -94,7 +94,7 @@ export function WhyArcova() {
                 transition={{ delay: index * 0.1 }}
                 className="glass p-8 rounded-3xl border-white/5 flex gap-6 hover:border-primary/50 transition-colors group"
               >
-                <div className="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-muted-foreground shrink-0 group-hover:bg-[#EDE8DF] group-hover:text-[#0A0908] transition-all duration-300">
+                <div className="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-muted-foreground shrink-0 group-hover:bg-foreground group-hover:text-background transition-all duration-300">
                   <reason.icon size={28} />
                 </div>
                 <div>

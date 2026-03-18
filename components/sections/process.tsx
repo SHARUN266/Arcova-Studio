@@ -57,10 +57,10 @@ export function Process() {
     <section id="process" className="section-padding relative overflow-hidden bg-[#0D0D0D] border-y border-white/5">
       {/* Background Image Integration */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <Image 
-          src="/hacker-using-computer-keyboard-with-data-visualization.jpg" 
-          alt="Technical Process Background" 
-          fill 
+        <Image
+          src="/hacker-using-computer-keyboard-with-data-visualization.jpg"
+          alt="Technical Process Background"
+          fill
           className="object-cover opacity-20 brightness-[0.4]"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-[#0D0D0D] via-transparent to-[#0D0D0D]" />

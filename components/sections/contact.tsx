@@ -100,7 +100,7 @@ export function Contact() {
       <div className="container mx-auto relative z-10">
         <div className="flex flex-col lg:flex-row rounded-[3rem] overflow-hidden shadow-2xl border border-white/10 bg-black/20 backdrop-blur-xl">
           {/* Left Panel: Deep Dark BG with Glassy Overlay */}
-          <div className="lg:w-2/5 bg-black/60 p-10 md:p-16 text-[#EDE8DF] relative overflow-hidden border-r border-white/5">
+          <div className="lg:w-2/5 bg-secondary p-8 md:p-16 text-foreground relative overflow-hidden lg:border-r border-border">
             <div className="absolute inset-0 bg-accent/5 pointer-events-none" />
             <div className="relative z-10">
               <h2 className="h2-section mb-8 leading-tight">
@@ -142,7 +142,7 @@ export function Contact() {
               </div>
 
               <Button
-                className="w-full mt-12 h-16 rounded-2xl bg-accent text-[#0A0908] hover:bg-accent/90 font-black text-lg gap-3 border-0"
+                className="w-full mt-12 h-16 rounded-2xl bg-accent text-accent-foreground hover:bg-accent/90 font-black text-lg gap-3 border-0"
                 onClick={() => window.open("https://wa.me/918279934295?text=Hello%20Arcova!%20I%20want%20to%20start%20a%20project.", "_blank")}
               >
                 <MessageSquare size={24} />
@@ -152,7 +152,7 @@ export function Contact() {
           </div>
 
           {/* Right Panel: Surface BG with Glassy Effect */}
-          <div className="lg:w-3/5 bg-white/[0.02] backdrop-blur-2xl p-10 md:p-16 flex flex-col justify-center">
+          <div className="lg:w-3/5 bg-card/60 backdrop-blur-2xl p-8 md:p-16 flex flex-col justify-center">
             <AnimatePresence mode="wait">
               {status === "success" ? (
                 <motion.div
@@ -164,7 +164,7 @@ export function Contact() {
                   <div className="w-24 h-24 bg-accent/20 text-accent rounded-full flex items-center justify-center mx-auto mb-8">
                     <CheckCircle2 size={48} />
                   </div>
-                  <h3 className="text-4xl font-black text-[#EDE8DF] mb-4">Request Sent!</h3>
+                  <h3 className="text-4xl font-black text-foreground mb-4">Request Sent!</h3>
                   <p className="body-large mb-10">
                     Thank you for reaching out. We&apos;ll get back to you
                     on WhatsApp within 2 hours.
@@ -184,7 +184,7 @@ export function Contact() {
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
                 >
-                  <h3 className="h3-card mb-10 text-[#EDE8DF]">Project Inquiry</h3>
+                  <h3 className="h3-card mb-10 text-foreground">Project Inquiry</h3>
                   <form className="grid grid-cols-1 gap-8" onSubmit={handleSubmit(onSubmit)}>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                       <div className="space-y-2">
@@ -192,11 +192,11 @@ export function Contact() {
                           <Input
                             {...register("name")}
                             placeholder="Your Name"
-                            className={`bg-transparent border-0 border-b rounded-none h-12 px-0 focus-visible:ring-0 focus-visible:border-accent transition-colors text-lg placeholder:text-[#555550] ${errors.name ? 'border-red-500/50' : 'border-white/10'}`}
+                            className={`bg-transparent border-0 border-b rounded-none h-12 px-0 focus-visible:ring-0 focus-visible:border-accent transition-colors text-lg placeholder:text-muted-foreground ${errors.name ? 'border-destructive/80' : 'border-border'}`}
                           />
                           <div className="absolute bottom-0 left-0 h-0.5 bg-accent w-0 group-focus-within:w-full transition-all duration-300" />
                         </div>
-                        {errors.name && <p className="text-xs text-red-500/80 font-medium">{errors.name.message}</p>}
+                        {errors.name && <p className="text-xs text-destructive font-medium">{errors.name.message}</p>}
                       </div>
                       <div className="space-y-2">
                         <div className="relative group">
@@ -204,16 +204,16 @@ export function Contact() {
                             {...register("whatsapp")}
                             type="tel"
                             placeholder="WhatsApp Number"
-                            className={`bg-transparent border-0 border-b rounded-none h-12 px-0 focus-visible:ring-0 focus-visible:border-accent transition-colors text-lg placeholder:text-[#555550] ${errors.whatsapp ? 'border-red-500/50' : 'border-white/10'}`}
+                            className={`bg-transparent border-0 border-b rounded-none h-12 px-0 focus-visible:ring-0 focus-visible:border-accent transition-colors text-lg placeholder:text-muted-foreground ${errors.whatsapp ? 'border-destructive/80' : 'border-border'}`}
                           />
                           <div className="absolute bottom-0 left-0 h-0.5 bg-accent w-0 group-focus-within:w-full transition-all duration-300" />
                         </div>
-                        {errors.whatsapp && <p className="text-xs text-red-500/80 font-medium">{errors.whatsapp.message}</p>}
+                        {errors.whatsapp && <p className="text-xs text-destructive font-medium">{errors.whatsapp.message}</p>}
                       </div>
                     </div>
 
                     <div className="space-y-4">
-                      <p className="text-sm font-bold uppercase tracking-widest text-[#555550]">Project Type</p>
+                      <p className="text-sm font-bold uppercase tracking-widest text-muted-foreground">Project Type</p>
                       <div className="flex flex-wrap gap-3">
                         {projectTypes.map((type) => (
                           <button
@@ -233,7 +233,7 @@ export function Contact() {
                     </div>
 
                     <div className="space-y-4">
-                      <p className="text-sm font-bold uppercase tracking-widest text-[#555550]">Budget Range</p>
+                      <p className="text-sm font-bold uppercase tracking-widest text-muted-foreground">Budget Range</p>
                       <div className="flex flex-wrap gap-3">
                         {budgetRanges.map((range) => (
                           <button
@@ -257,25 +257,25 @@ export function Contact() {
                         <Textarea
                           {...register("message")}
                           placeholder="Tell us about your project requirements..."
-                          className={`bg-transparent border-0 border-b rounded-none min-h-[100px] px-0 focus-visible:ring-0 focus-visible:border-accent transition-colors text-lg resize-none placeholder:text-[#555550] ${errors.message ? 'border-red-500/50' : 'border-white/10'}`}
+                          className={`bg-transparent border-0 border-b rounded-none min-h-[100px] px-0 focus-visible:ring-0 focus-visible:border-accent transition-colors text-lg resize-none placeholder:text-muted-foreground ${errors.message ? 'border-destructive/80' : 'border-border'}`}
                         />
                         <div className="absolute bottom-0 left-0 h-0.5 bg-accent w-0 group-focus-within:w-full transition-all duration-300" />
                       </div>
-                      {errors.message && <p className="text-xs text-red-500/80 font-medium">{errors.message.message}</p>}
+                      {errors.message && <p className="text-xs text-destructive font-medium">{errors.message.message}</p>}
                     </div>
 
                     <div className="flex items-center gap-3 cursor-pointer select-none" onClick={() => setValue("preferWhatsapp", !currentPreferWhatsapp)}>
                       <div className={`w-6 h-6 rounded border flex items-center justify-center transition-colors ${currentPreferWhatsapp ? 'bg-accent border-accent' : 'border-white/20'}`}>
                         {currentPreferWhatsapp && <CheckCircle2 size={16} className="text-accent-foreground" />}
                       </div>
-                      <span className="text-sm text-[#EDE8DF]/60 font-medium">📱 Contact me on WhatsApp instead</span>
+                      <span className="text-sm text-foreground/60 font-medium">📱 Contact me on WhatsApp instead</span>
                     </div>
 
                     <div className="space-y-4">
                       <Button
                         type="submit"
                         disabled={status === "loading"}
-                        className="h-16 px-12 rounded-2xl text-lg font-black group bg-accent text-[#0A0908] hover:bg-accent/90 border-0 disabled:opacity-50"
+                        className="h-16 px-8 md:px-12 w-full sm:w-auto rounded-2xl text-base md:text-lg font-black group bg-accent text-accent-foreground hover:bg-accent/90 border-0 disabled:opacity-50"
                       >
                         {status === "loading" ? (
                           <Loader2 className="animate-spin" />
@@ -285,7 +285,7 @@ export function Contact() {
                           </>
                         )}
                       </Button>
-                      <p className="text-sm text-[#555550] italic flex items-center gap-2">
+                      <p className="text-sm text-muted-foreground italic flex items-center gap-2">
                         <span className="text-accent">🔒</span> We reply within 2 hours. No spam, ever.
                       </p>
                     </div>

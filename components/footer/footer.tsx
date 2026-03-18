@@ -36,7 +36,7 @@ export function Footer() {
   return (
     <footer className="relative bg-background pt-24 pb-12 border-t border-white/5 overflow-hidden group">
       <div className="container mx-auto px-6 md:px-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-16 mb-20">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-12 sm:gap-16 mb-20">
           {/* Brand Column */}
           <div className="lg:col-span-3 flex flex-col items-start px-2">
             <Link href="/" className="mb-8">

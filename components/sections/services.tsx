@@ -67,28 +67,28 @@ function ServiceRow({ service }: { service: typeof services[0] }) {
   return (
     <div 
       ref={rowRef}
-      className="group relative flex flex-col md:flex-row md:items-center justify-between py-10 border-b border-white/5 cursor-pointer hover:bg-white/[0.02] transition-colors"
+      className="group relative flex flex-col md:flex-row md:items-center justify-between py-8 md:py-10 border-b border-white/5 cursor-pointer hover:bg-white/[0.02] transition-colors gap-6 md:gap-0"
     >
       <div ref={borderRef} className="absolute left-0 top-0 bottom-0 w-0 bg-transparent" />
       
-      <div className="flex items-center gap-8 md:gap-16 pl-6">
-        <span className="label-mono opacity-30 text-2xl">{service.number}</span>
-        <div className="max-w-md">
-          <h3 className="h3-card group-hover:text-accent transition-colors">
+      <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-8 md:gap-16 pl-6 md:pl-8">
+        <span className="label-mono opacity-30 text-xl md:text-2xl">{service.number}</span>
+        <div className="max-w-md pr-6 sm:pr-0">
+          <h3 className="text-xl md:text-2xl font-bold group-hover:text-accent transition-colors mb-2">
             {service.title}
           </h3>
-          <p className="body-base">
+          <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
             {service.description}
           </p>
         </div>
       </div>
 
-      <div className="flex items-center justify-between md:justify-end gap-12 mt-6 md:mt-0 pr-6 pl-6 md:pl-0">
-        <span className="text-xl font-bold font-mono tracking-tight text-accent">
+      <div className="flex items-center justify-between md:justify-end w-full md:w-auto pl-6 pr-6 gap-8 pb-2 md:pb-0">
+        <span className="text-lg md:text-xl font-bold font-mono tracking-tight text-accent">
           {service.price}
         </span>
-        <div className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center group-hover:bg-[#EDE8DF] group-hover:text-[#0A0908] transition-all">
-          <ArrowRight size={20} />
+        <div className="w-10 h-10 md:w-12 md:h-12 flex-shrink-0 rounded-full border border-white/10 flex items-center justify-center group-hover:bg-foreground group-hover:text-background transition-all">
+          <ArrowRight size={18} className="md:w-5 md:h-5" />
         </div>
       </div>
     </div>

@@ -154,7 +154,7 @@ export function Auditor() {
         )}
       </AnimatePresence>
 
-      <div className="container mx-auto relative z-10 px-6">
+      <div className="container mx-auto relative z-10">
         <div className="flex flex-col items-center text-center mb-16">
           <motion.div
             initial={{ scale: 0.9, opacity: 0 }}
@@ -181,35 +181,35 @@ export function Auditor() {
 
           <AnimatePresence mode="wait">
             {state === "INPUT" && (
-              <motion.div key="input" initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, scale: 0.95 }} className="glass p-1 rounded-[3rem] border-white/10 shadow-[0_0_80px_rgba(0,0,0,0.5)] relative group overflow-hidden">
-                <div className="bg-background/80 p-12 rounded-[2.8rem] border border-white/5 relative z-10">
+              <motion.div key="input" initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, scale: 0.95 }} className="glass p-1 rounded-3xl md:rounded-[3rem] border-white/10 shadow-[0_0_80px_rgba(0,0,0,0.5)] relative group overflow-hidden">
+                <div className="bg-background/80 p-4 sm:p-8 md:p-12 rounded-[1.4rem] md:rounded-[2.8rem] border border-white/5 relative z-10">
                   <form onSubmit={handleStartAudit} className="flex flex-col md:flex-row gap-4 relative z-20">
                     <div className="relative flex-1">
-                      <div className="absolute left-6 top-1/2 -translate-y-1/2 w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center border border-white/5 group-focus-within:border-accent/40 transition-colors">
-                        <Globe className="text-muted-foreground group-focus-within:text-accent transition-colors" size={18} />
+                      <div className="absolute left-4 md:left-6 top-1/2 -translate-y-1/2 w-8 h-8 md:w-10 md:h-10 rounded-xl bg-white/5 flex items-center justify-center border border-white/5 group-focus-within:border-accent/40 transition-colors">
+                        <Globe className="text-muted-foreground group-focus-within:text-accent transition-colors" size={16} />
                       </div>
                       <input
                         type="text"
-                        placeholder="enter domain name (e.g. sharmajewellers.com)"
-                        className="w-full bg-white/[0.03] border border-white/10 rounded-[1.5rem] py-6 pl-20 pr-8 text-xl focus:outline-none focus:border-accent/30 focus:bg-white/[0.06] transition-all font-light tracking-tight"
+                        placeholder="Enter domain (e.g. sharmajewellers.com)"
+                        className="w-full bg-white/[0.03] border border-white/10 rounded-2xl md:rounded-[1.5rem] py-4 md:py-6 pl-14 md:pl-20 pr-4 md:pr-8 text-base md:text-xl focus:outline-none focus:border-accent/30 focus:bg-white/[0.06] transition-all font-light tracking-tight"
                         value={url} onChange={(e) => setUrl(e.target.value)} required
                       />
                     </div>
-                    <Button type="submit" size="lg" className="bg-accent hover:bg-accent/90 text-black font-black text-lg h-auto py-6 px-12 rounded-[1.5rem] shadow-[0_20px_40px_rgba(245,166,35,0.2)] active:scale-[0.98] transition-all group/btn">
-                      SCAN NOW <Search className="ml-3 w-6 h-6 group-hover/btn:rotate-12 transition-transform" />
+                    <Button type="submit" size="lg" className="bg-accent hover:bg-accent/90 text-black font-black text-base md:text-lg h-auto py-5 md:py-6 px-8 md:px-12 rounded-2xl md:rounded-[1.5rem] shadow-[0_20px_40px_rgba(245,166,35,0.2)] active:scale-[0.98] transition-all group/btn w-full md:w-auto mt-4 md:mt-0">
+                      SCAN NOW <Search className="ml-3 w-5 h-5 md:w-6 md:h-6 group-hover/btn:rotate-12 transition-transform" />
                     </Button>
                   </form>
-                  <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
+                  <div className="mt-8 md:mt-12 grid grid-cols-1 sm:grid-cols-3 gap-6 md:gap-8">
                     {[
                       { icon: Zap, text: "Lighthouse Performance" },
                       { icon: Shield, text: "Security Header Validation" },
                       { icon: Activity, text: "Local SEO Saturation" }
                     ].map((item, i) => (
                       <div key={i} className="flex items-center gap-4 group/item">
-                        <div className="w-10 h-10 rounded-full bg-white/5 border border-white/5 flex items-center justify-center group-hover/item:bg-accent/10 group-hover/item:border-accent/30 transition-all">
+                        <div className="w-10 h-10 rounded-full bg-white/5 border border-white/5 flex items-center justify-center group-hover/item:bg-accent/10 group-hover/item:border-accent/30 transition-all flex-shrink-0">
                           <item.icon size={16} className="text-muted-foreground group-hover/item:text-accent transition-colors" />
                         </div>
-                        <span className="text-[10px] font-mono uppercase tracking-[0.2em] font-bold text-muted-foreground/60">{item.text}</span>
+                        <span className="text-[10px] sm:text-[9px] md:text-[10px] font-mono uppercase tracking-[0.2em] font-bold text-muted-foreground/80 md:text-muted-foreground/60">{item.text}</span>
                       </div>
                     ))}
                   </div>
@@ -218,8 +218,8 @@ export function Auditor() {
             )}
 
             {state === "ANALYZING" && (
-              <motion.div key="analyzing" initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 1.05 }} className="glass p-16 rounded-[3rem] border-accent/20 shadow-[0_0_100px_rgba(245,166,35,0.1)] relative overflow-hidden">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+              <motion.div key="analyzing" initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 1.05 }} className="glass p-6 sm:p-10 md:p-16 rounded-3xl md:rounded-[3rem] border-accent/20 shadow-[0_0_100px_rgba(245,166,35,0.1)] relative overflow-hidden">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-16 items-center">
                   <div className="relative flex flex-col items-center">
                     <div className="relative w-64 h-64">
                       <div className="absolute inset-0 border-[1px] border-accent/20 rounded-full" />
@@ -256,8 +256,8 @@ export function Auditor() {
               <motion.div key="report" initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
                 {/* Left Column: Diagnostics & Analysis */}
                 <div className="space-y-8">
-                  <div className="glass p-10 rounded-[3rem] border-white/5 shadow-xl">
-                    <div className="flex items-center gap-3 mb-8">
+                  <div className="glass p-6 sm:p-8 md:p-10 rounded-3xl md:rounded-[3rem] border-white/5 shadow-xl">
+                    <div className="flex items-center gap-3 mb-6 md:mb-8">
                       <div className="w-10 h-10 rounded-xl bg-green-500/10 flex items-center justify-center text-green-500">
                         <CheckCircle2 size={20} />
                       </div>
@@ -289,10 +289,10 @@ export function Auditor() {
 
                 {/* Right Column: Scores & CTA */}
                 <div className="space-y-8">
-                  <div className="glass p-10 rounded-[3rem] border-white/5 shadow-xl relative overflow-hidden">
-                    <div className="flex items-center justify-between mb-10">
-                      <h4 className="font-black text-xl uppercase tracking-tighter">Metric Analysis</h4>
-                      <div className="px-3 py-1 bg-accent/10 border border-accent/20 rounded-full text-[9px] font-mono font-bold text-accent uppercase">Overall Impact Score</div>
+                  <div className="glass p-6 sm:p-8 md:p-10 rounded-3xl md:rounded-[3rem] border-white/5 shadow-xl relative overflow-hidden">
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8 md:mb-10">
+                      <h4 className="font-black text-xl uppercase tracking-tighter text-center sm:text-left">Metric Analysis</h4>
+                      <div className="px-3 py-1 bg-accent/10 border border-accent/20 rounded-full text-[9px] font-mono font-bold text-accent uppercase mx-auto sm:mx-0">Overall Impact Score</div>
                     </div>
 
                     <div className="flex flex-col items-center mb-12">
@@ -320,8 +320,8 @@ export function Auditor() {
                     </div>
                   </div>
 
-                  <div className="bg-accent p-10 rounded-[3rem] text-background text-center shadow-[0_30px_80px_rgba(245,166,35,0.2)] group hover:translate-y-[-5px] transition-all duration-500">
-                    <div className="w-14 h-14 bg-background rounded-2xl flex items-center justify-center mx-auto mb-6">
+                  <div className="bg-accent p-6 sm:p-8 md:p-10 rounded-3xl md:rounded-[3rem] text-background text-center shadow-[0_30px_80px_rgba(245,166,35,0.2)] group hover:translate-y-[-5px] transition-all duration-500">
+                    <div className="w-12 h-12 md:w-14 md:h-14 bg-background rounded-2xl flex items-center justify-center mx-auto mb-6">
                       <BarChart3 className="text-accent w-7 h-7" />
                     </div>
                     <h3 className="text-2xl font-black uppercase tracking-tighter leading-[1.1] mb-4">Redeem Full <br />AI Strategy (PDF)</h3>

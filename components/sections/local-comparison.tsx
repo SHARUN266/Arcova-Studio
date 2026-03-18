@@ -47,21 +47,21 @@ export function LocalComparison() {
           </h2>
         </div>
 
-        <div className="max-w-5xl mx-auto overflow-x-auto">
-          <table className="w-full text-left border-collapse glass rounded-3xl overflow-hidden shadow-2xl border border-white/5">
+        <div className="max-w-5xl mx-auto overflow-x-auto pb-4 custom-scrollbar">
+          <table className="w-full min-w-[600px] text-left border-collapse glass rounded-3xl overflow-hidden shadow-2xl border border-white/5">
             <thead>
               <tr className="bg-accent/10 border-b border-accent/20">
-                <th className="py-8 px-10 text-xs font-black uppercase tracking-widest text-accent">Feature</th>
-                <th className="py-8 px-10 text-xs font-black uppercase tracking-widest text-accent text-center bg-accent/5">Arcova</th>
-                <th className="py-8 px-10 text-xs font-black uppercase tracking-widest text-foreground/40 text-center">Delhi Agency</th>
-                <th className="py-8 px-10 text-xs font-black uppercase tracking-widest text-foreground/40 text-center">Freelancer</th>
+                <th className="py-6 md:py-8 px-6 md:px-10 text-[10px] md:text-xs font-black uppercase tracking-widest text-accent whitespace-nowrap">Feature</th>
+                <th className="py-6 md:py-8 px-6 md:px-10 text-[10px] md:text-xs font-black uppercase tracking-widest text-accent text-center bg-accent/5 whitespace-nowrap">Arcova</th>
+                <th className="py-6 md:py-8 px-6 md:px-10 text-[10px] md:text-xs font-black uppercase tracking-widest text-foreground/40 text-center whitespace-nowrap">Delhi Agency</th>
+                <th className="py-6 md:py-8 px-6 md:px-10 text-[10px] md:text-xs font-black uppercase tracking-widest text-foreground/40 text-center whitespace-nowrap">Freelancer</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-white/5">
               {comparisonData.map((row, idx) => (
                 <tr key={idx} className={idx % 2 === 0 ? "bg-white/[0.02]" : "bg-transparent text-foreground/80"}>
-                  <td className="py-6 px-10 font-medium text-lg">{row.feature}</td>
-                  <td className="py-6 px-10 text-center bg-accent/5">
+                  <td className="py-5 md:py-6 px-6 md:px-10 font-medium text-sm md:text-lg whitespace-nowrap">{row.feature}</td>
+                  <td className="py-5 md:py-6 px-6 md:px-10 text-center bg-accent/5">
                     <span className="flex justify-center">
                       {row.arcova === true ? (
                         <Check className="text-accent" size={24} />
@@ -70,7 +70,7 @@ export function LocalComparison() {
                       )}
                     </span>
                   </td>
-                  <td className="py-6 px-10 text-center grayscale opacity-40">
+                  <td className="py-5 md:py-6 px-6 md:px-10 text-center grayscale opacity-40">
                     <span className="flex justify-center">
                       {row.delhiAgency === true ? (
                         <Check size={20} />
@@ -81,7 +81,7 @@ export function LocalComparison() {
                       )}
                     </span>
                   </td>
-                  <td className="py-6 px-10 text-center grayscale opacity-40">
+                  <td className="py-5 md:py-6 px-6 md:px-10 text-center grayscale opacity-40">
                     <span className="flex justify-center">
                       {row.freelancer === true ? (
                         <Check size={20} />

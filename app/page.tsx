@@ -13,7 +13,7 @@ import { TrustMarquee } from "@/components/ui/trust-marquee";
 
 export default function Home() {
   return (
-    <div className="flex flex-col">
+    <main className="flex flex-col overflow-x-hidden w-full relative max-w-[100vw]">
       <Hero />
       <div className="section-border">
         <TrustMarquee />
@@ -49,6 +49,6 @@ export default function Home() {
       <div className="section-border">
         <Contact />
       </div>
-    </div>
+    </main>
   );
 }

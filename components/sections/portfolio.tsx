@@ -126,7 +126,7 @@ function ProjectCard({ project, index }: { project: typeof projects[0], index: n
       {/* Project Details */}
       <div className="mt-8 px-2">
         <div className="flex items-center justify-between mb-3">
-          <h3 className="text-2xl font-display font-bold text-[#EDE8DF]">
+          <h3 className="text-2xl font-display font-bold text-foreground">
             {project.title}
           </h3>
           <div className="flex gap-2">
@@ -160,8 +160,8 @@ export function Portfolio() {
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-10 mb-24">
           <div className="max-w-2xl">
-            <span className="label-mono mb-4 block text-accent/60 uppercase tracking-[0.3em]">Featured Impact</span>
-            <h2 className="text-5xl md:text-7xl font-black mb-8 leading-tight tracking-tighter">
+            <span className="label-mono mb-4 block text-accent/60">Featured Impact</span>
+            <h2 className="h2-section font-black tracking-tighter">
               Selected <span className="text-accent italic underline decoration-accent/20">Work.</span>
             </h2>
             <p className="body-large opacity-70 leading-relaxed">
@@ -176,7 +176,7 @@ export function Portfolio() {
         </div>
 
         {/* Projects Grid - Focused & Breathable */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-16 lg:gap-24">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 lg:gap-24">
           {projects.map((project, index) => (
             <ProjectCard key={project.title} project={project} index={index} />
           ))}

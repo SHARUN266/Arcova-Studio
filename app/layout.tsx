@@ -27,7 +27,7 @@ const mono = JetBrains_Mono({
 import { CustomCursor } from "@/components/ui/custom-cursor";
 import { ScrollProgress } from "@/components/ui/scroll-progress";
 import { WhatsAppButton } from "@/components/ui/whatsapp-button";
-import { GoogleAnalytics } from "@/components/google-analytics";
+import { Analytics } from "@vercel/analytics/react";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_CONFIG.url),
@@ -92,7 +92,7 @@ export default function RootLayout({
         className={`${outfit.variable} ${syne.variable} ${mono.variable} antialiased selection:bg-primary/30 selection:text-white`}
       >
         <Schema />
-        <GoogleAnalytics />
+        <Analytics />
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"

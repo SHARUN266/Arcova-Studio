@@ -4,6 +4,9 @@ import { ArrowRight, Clock, Tag } from "lucide-react";
 import { getAllPosts } from "@/lib/blog-data";
 import { SITE_CONFIG } from "@/lib/seo-data";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export const metadata: Metadata = {
   title: "Blog",
   description:

@@ -6,6 +6,9 @@ import { generateBlogPostMetadata } from "@/lib/metadata";
 import { ArticleSchema } from "@/components/seo/schema";
 import { notFound } from "next/navigation";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 // ---------------------------------------------------------------------------
 // Static params for SSG
 // ---------------------------------------------------------------------------

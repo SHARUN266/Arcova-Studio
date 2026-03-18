@@ -18,9 +18,18 @@ const footerLinks = [
       { name: "Our Work", href: "#work" },
       { name: "Process", href: "#process" },
       { name: "Why Us", href: "/#why" },
+      { name: "Blog", href: "/blog" },
       { name: "Contact", href: "#contact" },
     ],
   },
+]
+
+const cityLinks = [
+  { name: "Agra", href: "/cities/agra" },
+  { name: "Mathura", href: "/cities/mathura" },
+  { name: "Firozabad", href: "/cities/firozabad" },
+  { name: "Vrindavan", href: "/cities/vrindavan" },
+  { name: "Hathras", href: "/cities/hathras" },
 ]
 
 export function Footer() {
@@ -36,7 +45,7 @@ export function Footer() {
               </span>
             </Link>
             <p className="text-xl md:text-2xl font-light text-muted-foreground mb-8 max-w-md leading-relaxed">
-              &ldquo;Websites that work harder than you.&rdquo;
+              &ldquo;We build what scales.&rdquo;
             </p>
 
             {/* Local SEO Paragraph */}
@@ -72,6 +81,26 @@ export function Footer() {
               </ul>
             </div>
           ))}
+
+          {/* City Links */}
+          <div className="lg:col-span-1">
+            <h4 className="label-mono mb-8 opacity-40">
+              Cities We Serve
+            </h4>
+            <ul className="space-y-4">
+              {cityLinks.map((link) => (
+                <li key={link.name}>
+                  <Link
+                    href={link.href}
+                    className="text-lg text-muted-foreground hover:text-accent transition-colors flex items-center gap-2 group"
+                  >
+                    {link.name}
+                    <ArrowUpRight size={14} className="opacity-0 group-hover:opacity-100 transition-all -translate-x-2 group-hover:translate-x-0" />
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 pt-12 border-t border-white/5 items-start">

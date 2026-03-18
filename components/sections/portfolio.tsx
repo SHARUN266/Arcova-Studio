@@ -97,9 +97,10 @@ function ProjectCard({ project, index }: { project: typeof projects[0], index: n
             src={project.url}
             allow="geolocation"
             onLoad={() => setIsLoading(false)}
-            className="w-full h-full border-0 pointer-events-none grayscale-[0.2] group-hover:grayscale-0 transition-all duration-700 animate-portfolio-scroll group-hover:[animation-play-state:paused]"
+            className="w-full h-full border-0 pointer-events-none  group-hover:grayscale-0 transition-all duration-700 group-hover:[animation-play-state:paused]"
             title={project.title}
             loading="lazy"
+            
           />
         </div>
 

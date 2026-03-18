@@ -7,8 +7,8 @@ import { Testimonials } from "@/components/sections/testimonials";
 import { Contact } from "@/components/sections/contact";
 import { Hero } from "@/components/sections/hero";
 import { WhyArcova } from "@/components/sections/why-arcova";
-import { Auditor } from "@/components/sections/auditor";
 import { LocalComparison } from "@/components/sections/local-comparison";
+import { Auditor } from "@/components/sections/auditor";
 import { TrustMarquee } from "@/components/ui/trust-marquee";
 
 export default function Home() {
@@ -23,11 +23,11 @@ export default function Home() {
       </div>
 
       <div className="section-border">
-        <Auditor />
+        <LocalComparison />
       </div>
 
       <div className="section-border">
-        <LocalComparison />
+        <Auditor />
       </div>
 
       <div className="section-border">

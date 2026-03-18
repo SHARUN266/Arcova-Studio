@@ -11,7 +11,7 @@ const testimonials = [
     role: "Owner",
     avatar: "/images/testimonials/avatar1.png",
     location: "Sadar Bazaar, Agra",
-    text: "Actually, we were struggling with an old website that didn't show our craft properly. The PixelAgra team came to our workshop, understood how we work, and built something that genuinely represents us. It's not just about a website; they understand the Agra business mindset.",
+    text: "Actually, we were struggling with an old website that didn't show our craft properly. The Arcova team came to our workshop, understood how we work, and built something that genuinely represents us. It's not just about a website; they understand the Agra business mindset.",
     tag: "Traditional Business"
   },
   {

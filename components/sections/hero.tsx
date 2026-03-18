@@ -5,6 +5,7 @@ import { motion } from "framer-motion"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { ArrowRight, MapPin } from "lucide-react"
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Counter } from "@/components/ui/counter"
 
@@ -77,36 +78,22 @@ export function Hero() {
 
   return (
     <section
-      className="relative min-h-[95vh] flex items-center justify-center overflow-hidden pt-24"
-      style={{
-        background: "radial-gradient(circle at 80% 50%, rgba(232, 160, 69, 0.04), transparent), #0A0908"
-      }}
+      className="relative min-h-[95vh] flex items-center justify-center overflow-hidden pt-24 bg-[#0A0908]"
     >
 
       {/* Decorative Grid Element */}
       <div ref={decoRef} className="absolute left-[-10%] top-[20%] w-[500px] h-[500px] border border-accent/10 rounded-full pointer-events-none" />
 
-      {/* Subtle Taj Mahal Wireframe */}
-      <div ref={TajRef} className="absolute right-[-10%] top-1/2 -translate-y-1/2 opacity-12 pointer-events-none select-none">
-        <svg width="800" height="800" viewBox="0 0 600 600" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-[#E8A045]">
-          {/* Main Dome */}
-          <path d="M300 150C300 150 220 180 220 250V450H380V250C380 180 300 150 300 150Z" stroke="currentColor" strokeWidth="1" />
-          <path d="M300 120V150" stroke="currentColor" strokeWidth="1" />
-          <circle cx="300" cy="110" r="10" stroke="currentColor" strokeWidth="1" />
-
-          {/* Small Domes */}
-          <path d="M180 320C180 320 150 340 150 380V450H210V380C210 340 180 320 180 320Z" stroke="currentColor" strokeWidth="1" />
-          <path d="M420 320C420 320 450 340 450 380V450H390V380C390 340 420 320 420 320Z" stroke="currentColor" strokeWidth="1" />
-
-          {/* Minarets */}
-          <line x1="80" y1="200" x2="80" y2="450" stroke="currentColor" strokeWidth="1" />
-          <line x1="520" y1="200" x2="520" y2="450" stroke="currentColor" strokeWidth="1" />
-          <rect x="70" y="180" width="20" height="20" stroke="currentColor" strokeWidth="1" />
-          <rect x="510" y="180" width="20" height="20" stroke="currentColor" strokeWidth="1" />
-
-          {/* Base */}
-          <line x1="50" y1="450" x2="550" y2="450" stroke="currentColor" strokeWidth="1" />
-        </svg>
+      {/* Golden Taj Mahal Illustration */}
+      <div ref={TajRef} className="absolute right-[-5%] md:right-0 top-1/2 -translate-y-1/2 pointer-events-none select-none w-[500px] md:w-[650px] lg:w-[750px] h-[500px] md:h-[650px] lg:h-[750px]">
+        <Image
+          src="/taj-mahal-illustration.png"
+          alt=""
+          fill
+          className="object-contain opacity-20"
+          priority={false}
+          aria-hidden="true"
+        />
       </div>
 
       <div ref={contentRef} className="container mx-auto px-6 relative z-10">
@@ -127,24 +114,23 @@ export function Hero() {
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/20 border border-accent/30 shadow-[0_0_15px_rgba(245,166,35,0.15)] animate-pulse"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/20 border border-accent/30 shadow-[0_0_15px_rgba(232,160,69,0.15)] animate-pulse"
             >
               <span className="text-accent text-xs">⚡</span>
               <span className="label-mono text-accent">Currently accepting new projects</span>
             </motion.div>
           </div>
 
-          {/* Headline */}
           <h1
             ref={h1Ref}
-            className="h1-display"
+            className="text-5xl md:text-6xl lg:text-7xl font-extrabold leading-[1.1] tracking-[-0.02em] mb-8 font-sans"
           >
-            Agra Ka Pehla <br />
+            Agra&apos;s <br />
             <span className="text-accent">Premium</span> Web Studio.
           </h1>
 
           {/* Trust Indicators / Counter */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 1.2 }}
@@ -177,7 +163,7 @@ export function Hero() {
             transition={{ duration: 1, delay: 1.5 }}
             className="text-lg md:text-xl italic text-[#555550] mb-12 max-w-2xl"
           >
-            Hotels. Shops. Clinics. — 7 din mein live.
+            We build what scales.
           </motion.p>
 
           {/* CTAs */}
@@ -195,8 +181,8 @@ export function Hero() {
               Start Your Project
               <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={20} />
             </Button>
-            <Button 
-              variant="ghost" 
+            <Button
+              variant="ghost"
               className="text-lg hover:bg-white/5 h-16 px-8 rounded-full"
               onClick={() => document.getElementById('work')?.scrollIntoView({ behavior: 'smooth' })}
             >

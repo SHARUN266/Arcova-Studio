@@ -16,7 +16,7 @@ export async function POST(req: Request) {
     }
 
     // Using exactly one stable model for consistency
-    const model = genAI.getGenerativeModel({ 
+    const model = genAI.getGenerativeModel({
       model: "gemini-2.5-flash",
       generationConfig: {
         responseMimeType: "application/json",
@@ -46,7 +46,7 @@ export async function POST(req: Request) {
 
   } catch (error: any) {
     console.error("Audit API Error:", error.message);
-    
+
     let errorMessage = "AI Generation failed. Please try again later.";
     let status = 500;
 

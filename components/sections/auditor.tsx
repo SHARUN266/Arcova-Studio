@@ -36,7 +36,7 @@ function ScoreGauge({ score, label, icon: Icon, color }: { score: number, label:
   return (
     <div className="flex flex-col items-center p-5 bg-white/[0.03] rounded-2xl border border-white/5 relative group hover:border-accent/20 transition-all duration-500 overflow-hidden">
       <div className={`absolute top-0 right-0 w-12 h-12 bg-${color}-500/5 blur-xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity`} />
-      
+
       <div className="relative w-20 h-20 mb-3">
         {/* Background Track */}
         <svg className="w-full h-full transform -rotate-90">
@@ -54,7 +54,7 @@ function ScoreGauge({ score, label, icon: Icon, color }: { score: number, label:
           <span className="text-[7px] font-mono uppercase opacity-50">Score</span>
         </div>
       </div>
-      
+
       <div className="flex items-center gap-2">
         <Icon size={12} className="opacity-60" />
         <span className="text-[9px] font-mono uppercase tracking-widest font-bold opacity-80">{label}</span>
@@ -70,7 +70,7 @@ export function Auditor() {
   const [progress, setProgress] = useState(0)
   const [report, setReport] = useState<AuditResult | null>(null)
   const [error, setError] = useState<string | null>(null)
-  
+
   const logContainerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -99,7 +99,7 @@ export function Auditor() {
   const handleStartAudit = async (e: React.FormEvent) => {
     e.preventDefault()
     if (!url) return
-    
+
     setError(null)
     setState("ANALYZING")
     setLogIndex(0)
@@ -120,7 +120,7 @@ export function Auditor() {
 
       setReport(data)
       setProgress(100)
-      
+
       // Track successful audit event
       if (typeof window !== 'undefined' && (window as any).gtag) {
         (window as any).gtag('event', 'generate_audit', {
@@ -129,7 +129,7 @@ export function Auditor() {
           'value': data.score
         });
       }
-      
+
       setTimeout(() => {
         setState("REPORT")
       }, 1000)
@@ -145,7 +145,7 @@ export function Auditor() {
       <div className="absolute inset-0 pointer-events-none opacity-20">
         <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, rgba(255,255,255,0.05) 1px, transparent 0)', backgroundSize: '40px 40px' }} />
       </div>
-      
+
       <AnimatePresence>
         {state === "ANALYZING" && (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="absolute inset-0 bg-accent/5 z-0">
@@ -165,7 +165,7 @@ export function Auditor() {
             <Activity size={14} className="text-accent animate-pulse" />
             <span className="text-[10px] uppercase font-mono font-bold tracking-[0.2em] text-accent">Deep AI Analysis Engaged</span>
           </motion.div>
-          
+
           <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="h2-section max-w-4xl tracking-tighter">
             Stop Guessing. <br />
             <span className="text-accent underline decoration-accent/20 underline-offset-[12px]">Quantify</span> Your Visual Impact.
@@ -188,9 +188,9 @@ export function Auditor() {
                       <div className="absolute left-6 top-1/2 -translate-y-1/2 w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center border border-white/5 group-focus-within:border-accent/40 transition-colors">
                         <Globe className="text-muted-foreground group-focus-within:text-accent transition-colors" size={18} />
                       </div>
-                      <input 
-                        type="text" 
-                        placeholder="enter domain name (e.g. sharmajewellers.com)" 
+                      <input
+                        type="text"
+                        placeholder="enter domain name (e.g. sharmajewellers.com)"
                         className="w-full bg-white/[0.03] border border-white/10 rounded-[1.5rem] py-6 pl-20 pr-8 text-xl focus:outline-none focus:border-accent/30 focus:bg-white/[0.06] transition-all font-light tracking-tight"
                         value={url} onChange={(e) => setUrl(e.target.value)} required
                       />
@@ -266,7 +266,7 @@ export function Auditor() {
                         <p className="text-[10px] font-mono uppercase tracking-widest opacity-40">{url}</p>
                       </div>
                     </div>
-                    
+
                     <div className="mb-10 p-6 bg-white/[0.02] rounded-2xl border border-white/5 italic text-muted-foreground leading-relaxed">
                       "{report.summary}"
                     </div>
@@ -310,7 +310,7 @@ export function Auditor() {
                           <span className="text-xs font-mono uppercase opacity-50 tracking-widest">Aggregate</span>
                         </div>
                       </div>
-                      
+
                       <div className="grid grid-cols-2 gap-4 w-full">
                         <ScoreGauge score={report.scores.seo} label="SEO" icon={Globe} color="accent" />
                         <ScoreGauge score={report.scores.performance} label="Speed" icon={Zap} color="blue" />

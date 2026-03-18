@@ -197,7 +197,7 @@ export function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 2.5, duration: 1 }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+        className="relative sm:absolute mt-16 sm:mt-0 bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 w-full sm:w-auto"
       >
         <span className="label-mono opacity-50">Scroll to Explore</span>
         <div className="w-px h-12 bg-gradient-to-b from-accent to-transparent" />

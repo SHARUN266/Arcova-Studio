@@ -5,72 +5,72 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --color-background: #080808;
-  --color-foreground: #FAFAF9;
-  --font-sans: var(--font-outfit);
-  --font-display: var(--font-display);
-  --font-mono: var(--font-mono);
-  --color-section-border: #1A1A1A;
-  --color-primary: #E8A045;
-  --color-accent: #E8A045;
-  --color-card: #121212;
+  --color-background: #050505;
+  --color-foreground: #FFFFFF;
+  --font-sans: "Satoshi", "Satoshi Placeholder", sans-serif;
+  --font-display: "Satoshi", "Satoshi Placeholder", sans-serif;
+  --font-mono: "Satoshi", "Satoshi Placeholder", sans-serif;
+  --font-serif: "Instrument Serif", "Instrument Serif Placeholder", var(--font-instrument), serif;
+  --color-section-border: #1F1F1F;
+  --color-primary: #ff4533;
+  --color-secondary: #FF8566;
+  --color-accent: #ff4533;
+  --color-card: #0A0A0A;
   --color-muted-foreground: #A3A3A3;
   --color-border: #1F1F1F;
-  --color-ring: #E8A045;
-  --radius-lg: 1rem;
+  --color-ring: #ff4533;
+  --radius-lg: 1.25rem;
 }
 
 :root {
-  --background: #080808;
-  --foreground: #FAFAF9;
-  --card: #121212;
-  --card-foreground: #FAFAF9;
-  --popover: #121212;
-  --popover-foreground: #FAFAF9;
-  --primary: #E8A045;
-  --primary-foreground: #080808;
-  --secondary: #1A1A1A;
-  --secondary-foreground: #FAFAF9;
-  --muted: #1A1A1A;
+  --background: #050505;
+  --foreground: #FFFFFF;
+  --card: #0A0A0A;
+  --card-foreground: #FFFFFF;
+  --popover: #0A0A0A;
+  --popover-foreground: #FFFFFF;
+  --primary: #ff4533;
+  --primary-foreground: #FFFFFF;
+  --secondary: #FF8566;
+  --secondary-foreground: #050505;
+  --muted: #111111;
   --muted-foreground: #A3A3A3;
-  --accent: #E8A045;
-  --accent-foreground: #080808;
+  --accent: #ff4533;
+  --accent-foreground: #FFFFFF;
   --destructive: #EF4444;
-  --destructive-foreground: #FAFAF9;
+  --destructive-foreground: #FFFFFF;
   --border: #1F1F1F;
   --input: #1F1F1F;
-  --ring: #E8A045;
-  --radius: 1rem;
+  --ring: #ff4533;
+  --radius: 1.25rem;
 }
 
 .dark {
-  --background: #080808;
-  --foreground: #FAFAF9;
-  --card: #121212;
-  --card-foreground: #FAFAF9;
-  --popover: #121212;
-  --popover-foreground: #FAFAF9;
-  --primary: #E8A045;
-  --primary-foreground: #080808;
-  --secondary: #1A1A1A;
-  --secondary-foreground: #FAFAF9;
-  --muted: #1A1A1A;
+  --background: #050505;
+  --foreground: #FFFFFF;
+  --card: #0A0A0A;
+  --card-foreground: #FFFFFF;
+  --popover: #0A0A0A;
+  --popover-foreground: #FFFFFF;
+  --primary: #ff4533;
+  --primary-foreground: #FFFFFF;
+  --secondary: #FF8566;
+  --secondary-foreground: #050505;
+  --muted: #111111;
   --muted-foreground: #A3A3A3;
-  --accent: #E8A045;
-  --accent-foreground: #080808;
+  --accent: #ff4533;
+  --accent-foreground: #FFFFFF;
   --destructive: #EF4444;
-  --destructive-foreground: #FAFAF9;
+  --destructive-foreground: #FFFFFF;
   --border: #1F1F1F;
   --input: #1F1F1F;
-  --ring: #E8A045;
+  --ring: #ff4533;
 }
 
 @layer base {
   * {
     border-color: rgba(237, 232, 223, 0.1);
     outline-color: rgba(232, 160, 69, 0.5);
-    /* Remove any implicit blue vignettes or shadows */
-    box-shadow: none !important;
   }
 
   /* Restore shadows for specific elements only */
@@ -79,7 +79,7 @@
   .shadow-xl,
   .shadow-2xl,
   .glass {
-    box-shadow: unset !important;
+    box-shadow: unset;
   }
 
   html,
@@ -103,20 +103,20 @@
   h1,
   .h1-display {
     font-family: var(--font-display), serif;
-    font-size: clamp(2.5rem, 5vw + 1rem, 5rem);
+    font-size: clamp(2.25rem, 5vw + 1rem, 5rem);
     line-height: 1.1;
     letter-spacing: -0.02em;
     font-weight: 800;
-    @apply mb-6 md:mb-8;
+    @apply mb-3 md:mb-8;
   }
 
   h2,
   .h2-section {
     font-family: var(--font-display), serif;
-    font-size: clamp(2rem, 4.5vw + 1rem, 4rem);
+    font-size: clamp(1.85rem, 4.5vw + 1rem, 4rem);
     line-height: 1.15;
     font-weight: 700;
-    @apply mb-6 md:mb-8;
+    @apply mb-3 md:mb-8;
   }
 
   h3,
@@ -130,16 +130,16 @@
 
   p,
   .body-base {
-    font-size: clamp(1rem, 1.2vw + 0.8rem, 1.125rem);
-    line-height: 1.7;
-    font-weight: 300;
+    font-size: clamp(1rem, 1.2vw + 1rem, 1.125rem);
+    line-height: 1.8;
+    font-weight: 400;
     color: var(--muted-foreground);
   }
 
   .body-large {
-    font-size: clamp(1.125rem, 1.5vw + 0.8rem, 1.375rem);
-    line-height: 1.7;
-    font-weight: 300;
+    font-size: clamp(1.125rem, 1.5vw + 1rem, 1.375rem);
+    line-height: 1.8;
+    font-weight: 400;
     color: var(--muted-foreground);
   }
 
@@ -155,19 +155,82 @@
 
 @layer utilities {
   .glass {
-    @apply bg-background/60 backdrop-blur-xl border border-white/10 dark:border-white/5;
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, 0.08); /* sharper, cleaner border */
+    box-shadow: 
+      0 4px 6px -1px rgba(0, 0, 0, 0.2),
+      0 20px 25px -5px rgba(0, 0, 0, 0.4);
+    border-radius: var(--radius-lg);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .glass-panel {
+    background: rgba(10, 10, 10, 0.6);
+    backdrop-filter: blur(40px);
+    -webkit-backdrop-filter: blur(40px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 
+      0 10px 15px -3px rgba(0, 0, 0, 0.6),
+      0 35px 60px -15px rgba(0, 0, 0, 0.8);
+    border-radius: calc(var(--radius-lg) + 0.75rem);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .glass-reflection {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0) 30%);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .bg-dark-surface {
+    background-color: #050505;
+  }
+
+  .bg-dark-elevated {
+    background-color: #0A0A0A;
+  }
+
+  .shadow-premium {
+    box-shadow: 
+      0 10px 15px -3px rgba(0, 0, 0, 0.6),
+      0 4px 6px -2px rgba(0, 0, 0, 0.4),
+      0 35px 60px -15px rgba(0, 0, 0, 0.8),
+      inset 0 1px 1px rgba(255, 255, 255, 0.05);
+  }
+
+  .glow-bg {
+    position: absolute;
+    background: radial-gradient(circle, rgba(255, 75, 51, 0.2) 0%, rgba(0,0,0,0) 70%);
+    filter: blur(100px);
+    z-index: -1;
+    pointer-events: none;
   }
 
   .text-gradient {
-    @apply bg-gradient-to-br from-primary to-accent bg-clip-text text-transparent;
+    @apply bg-gradient-to-br from-[#ff4533] via-[#FF8566] to-[#ff4533] bg-clip-text text-transparent;
   }
 
   .btn-primary {
-    @apply h-14 px-10 rounded-full font-bold text-lg bg-accent text-[#0A0908] hover:scale-[1.02] active:scale-95 transition-all shadow-xl shadow-accent/20;
+    background: linear-gradient(135deg, #ff4533, #FF2B12);
+    box-shadow: 0 0 25px rgba(255, 75, 51, 0.35);
+    @apply h-14 px-10 rounded-full font-bold text-lg text-[#FFFFFF] hover:scale-[1.05] hover:shadow-[0_0_40px_rgba(255,69,51,0.55)] active:scale-95 transition-all duration-300;
+  }
+  
+  .font-italic-serif {
+    font-family: var(--font-display), serif;
+    font-style: italic;
+    font-weight: 400;
+    letter-spacing: 0.02em;
   }
 
   .section-padding {
-    @apply py-24 md:py-32 px-6 md:px-12 lg:px-24;
+    @apply py-32 md:py-40 px-6 md:px-12 lg:px-32;
   }
 
   .section-border {
@@ -186,5 +249,28 @@
 
   .animate-portfolio-scroll {
     animation: portfolio-scroll 40s linear infinite;
+  }
+
+  .grain-overlay {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    mix-blend-mode: screen;
+  }
+
+  .magnetic-wrap {
+    position: relative;
+    display: inline-block;
+  }
+
+  .premium-glow {
+    box-shadow: 0 0 40px -10px rgba(255, 75, 51, 0.15);
+    transition: box-shadow 0.4s ease;
+  }
+  .premium-glow:hover {
+    box-shadow: 0 0 60px -5px rgba(255, 75, 51, 0.25);
   }
 }

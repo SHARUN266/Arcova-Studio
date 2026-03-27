@@ -4,103 +4,74 @@ import { motion } from "framer-motion"
 import { Check, X } from "lucide-react"
 
 const comparisonData = [
-  {
-    feature: "Face-to-face meetings",
-    arcova: true,
-    delhiAgency: false,
-    freelancer: false,
-  },
-  {
-    feature: "Local market knowledge",
-    arcova: true,
-    delhiAgency: false,
-    freelancer: "maybe",
-  },
-  {
-    feature: "Price",
-    arcova: "₹₹",
-    delhiAgency: "₹₹₹₹",
-    freelancer: "₹",
-  },
-  {
-    feature: "Response time",
-    arcova: "< 2 hrs",
-    delhiAgency: "24+ hrs",
-    freelancer: "Varies",
-  },
-  {
-    feature: "Ongoing support",
-    arcova: true,
-    delhiAgency: "extra",
-    freelancer: false,
-  },
+  { feature: "Face-to-face Strategic Meetings", arcova: true, others: false },
+  { feature: "Local Market & Audience Knowledge", arcova: true, others: "Limited" },
+  { feature: "Bespoke Premium Design", arcova: true, others: "Templates" },
+  { feature: "Response Time", arcova: "< 2 Hours", others: "24-48 Hours" },
+  { feature: "Dedicated Ongoing Support", arcova: true, others: "Extra Cost" },
 ]
 
 export function LocalComparison() {
   return (
-    <section className="section-padding bg-black relative overflow-hidden">
-      <div className="container mx-auto">
-        <div className="max-w-4xl mx-auto text-center mb-20">
-          <span className="label-mono mb-4 block text-accent">Why Local Beats Remote</span>
-          <h2 className="h2-section text-foreground">
-            Why Agra Businesses Choose Us Over <span className="text-accent underline decoration-accent/20 italic">Delhi</span> Agencies
+    <section className="section-padding bg-dark-surface relative overflow-hidden py-32">
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-[400px] bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
+      
+      <div className="container mx-auto relative z-10">
+        <div className="text-center mb-24">
+          <span className="label-mono mb-4 block text-primary/80 tracking-[0.3em] uppercase">The Arcova Standard</span>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-black text-white">
+            Why We Beat <br className="md:hidden" />
+            <span className="text-gradient font-italic-serif font-light">Remote Agencies.</span>
           </h2>
         </div>
 
-        <div className="max-w-5xl mx-auto overflow-x-auto pb-4 custom-scrollbar">
-          <table className="w-full min-w-[600px] text-left border-collapse glass rounded-3xl overflow-hidden shadow-2xl border border-white/5">
-            <thead>
-              <tr className="bg-accent/10 border-b border-accent/20">
-                <th className="py-6 md:py-8 px-6 md:px-10 text-[10px] md:text-xs font-black uppercase tracking-widest text-accent whitespace-nowrap">Feature</th>
-                <th className="py-6 md:py-8 px-6 md:px-10 text-[10px] md:text-xs font-black uppercase tracking-widest text-accent text-center bg-accent/5 whitespace-nowrap">Arcova</th>
-                <th className="py-6 md:py-8 px-6 md:px-10 text-[10px] md:text-xs font-black uppercase tracking-widest text-foreground/40 text-center whitespace-nowrap">Delhi Agency</th>
-                <th className="py-6 md:py-8 px-6 md:px-10 text-[10px] md:text-xs font-black uppercase tracking-widest text-foreground/40 text-center whitespace-nowrap">Freelancer</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-white/5">
-              {comparisonData.map((row, idx) => (
-                <tr key={idx} className={idx % 2 === 0 ? "bg-white/[0.02]" : "bg-transparent text-foreground/80"}>
-                  <td className="py-5 md:py-6 px-6 md:px-10 font-medium text-sm md:text-lg whitespace-nowrap">{row.feature}</td>
-                  <td className="py-5 md:py-6 px-6 md:px-10 text-center bg-accent/5">
-                    <span className="flex justify-center">
-                      {row.arcova === true ? (
-                        <Check className="text-accent" size={24} />
-                      ) : (
-                        <span className="font-black text-accent">{row.arcova}</span>
-                      )}
-                    </span>
-                  </td>
-                  <td className="py-5 md:py-6 px-6 md:px-10 text-center grayscale opacity-40">
-                    <span className="flex justify-center">
-                      {row.delhiAgency === true ? (
-                        <Check size={20} />
-                      ) : row.delhiAgency === false ? (
-                        <X size={20} />
-                      ) : (
-                        <span className="text-sm font-bold">{row.delhiAgency}</span>
-                      )}
-                    </span>
-                  </td>
-                  <td className="py-5 md:py-6 px-6 md:px-10 text-center grayscale opacity-40">
-                    <span className="flex justify-center">
-                      {row.freelancer === true ? (
-                        <Check size={20} />
-                      ) : row.freelancer === false ? (
-                        <X size={20} />
-                      ) : (
-                        <span className="text-sm font-bold italic">{row.freelancer}</span>
-                      )}
-                    </span>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+        <div className="max-w-4xl mx-auto flex flex-col gap-4">
+          {/* Header */}
+          <div className="grid grid-cols-12 gap-4 px-6 md:px-10 pb-4 border-b border-white/10">
+            <div className="col-span-6 md:col-span-6 text-[10px] md:text-xs font-bold uppercase tracking-widest text-white/40">Feature</div>
+            <div className="col-span-3 md:col-span-3 text-center text-[10px] md:text-xs font-bold uppercase tracking-widest text-primary">Arcova</div>
+            <div className="col-span-3 md:col-span-3 text-center text-[10px] md:text-xs font-bold uppercase tracking-widest text-white/40">Others</div>
+          </div>
+
+          {/* Rows */}
+          {comparisonData.map((row, idx) => (
+            <motion.div 
+              key={idx}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: idx * 0.1 }}
+              className="group relative"
+            >
+              {/* Hover highlight */}
+              <div className="absolute inset-0 bg-primary/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none mix-blend-screen" />
+              
+              <div className="grid grid-cols-12 gap-4 px-6 md:px-10 py-6 md:py-8 items-center relative z-10 border border-transparent group-hover:border-primary/20 rounded-2xl transition-all duration-300">
+                <div className="col-span-6 md:col-span-6 text-sm md:text-lg font-bold text-white/80 group-hover:text-white transition-colors">
+                  {row.feature}
+                </div>
+                
+                <div className="col-span-3 md:col-span-3 flex justify-center items-center">
+                  {row.arcova === true ? (
+                    <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-black transition-all duration-300 group-hover:scale-110 shadow-[0_0_15px_rgba(255,69,51,0)] group-hover:shadow-[0_0_20px_rgba(255,69,51,0.4)]">
+                      <Check size={20} strokeWidth={3} />
+                    </div>
+                  ) : (
+                    <div className="text-center">
+                      <span className="font-black font-mono text-sm md:text-base text-primary whitespace-nowrap group-hover:text-white transition-colors duration-300 drop-shadow-[0_0_10px_rgba(255,69,51,0)] group-hover:drop-shadow-[0_0_15px_rgba(255,69,51,0.8)]">
+                        {row.arcova}
+                      </span>
+                    </div>
+                  )}
+                </div>
+
+                <div className="col-span-3 md:col-span-3 flex justify-center items-center opacity-40 group-hover:opacity-20 transition-opacity duration-300 grayscale">
+                  {row.others === false ? <X size={20} /> : <span className="text-xs md:text-sm font-bold font-mono text-center">{row.others}</span>}
+                </div>
+              </div>
+            </motion.div>
+          ))}
         </div>
-        
-        <p className="text-center mt-12 text-sm italic opacity-40">
-          * Based on average market feedback from local Agra businesses.
-        </p>
       </div>
     </section>
   )

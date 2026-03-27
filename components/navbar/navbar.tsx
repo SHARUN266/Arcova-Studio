@@ -91,7 +91,7 @@ export function Navbar() {
                     className="rounded-full px-8 bg-accent text-accent-foreground hover:bg-accent/90 shadow-lg shadow-accent/20 border-0 font-bold"
                     onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
                   >
-                    Start Project →
+                    Book a call →
                   </Button>
                 </motion.div>
               ) : (
@@ -122,7 +122,7 @@ export function Navbar() {
                   className="rounded-full px-4 h-9 bg-accent text-accent-foreground text-[10px] font-black uppercase tracking-widest border-0"
                   onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
                 >
-                  Start →
+                  Book a call →
                 </Button>
               </motion.div>
             )}
@@ -180,7 +180,7 @@ export function Navbar() {
                   document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
                 }}
               >
-                Start Project →
+                Book a call →
               </Button>
             </div>
           </motion.div>

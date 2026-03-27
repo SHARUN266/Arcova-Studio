@@ -141,7 +141,7 @@ export function Auditor() {
   }
 
   return (
-    <section id="auditor" className="section-padding relative overflow-hidden bg-background border-y border-white/5">
+    <section id="auditor" className="section-padding relative overflow-hidden bg-dark-elevated border-y border-white/5">
       <div className="absolute inset-0 pointer-events-none opacity-20">
         <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, rgba(255,255,255,0.05) 1px, transparent 0)', backgroundSize: '40px 40px' }} />
       </div>
@@ -181,7 +181,8 @@ export function Auditor() {
 
           <AnimatePresence mode="wait">
             {state === "INPUT" && (
-              <motion.div key="input" initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, scale: 0.95 }} className="glass p-1 rounded-3xl md:rounded-[3rem] border-white/10 shadow-[0_0_80px_rgba(0,0,0,0.5)] relative group overflow-hidden">
+              <motion.div key="input" initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, scale: 0.95 }} className="glass p-1 rounded-3xl md:rounded-[3rem] border-white/10 shadow-premium relative group overflow-hidden">
+                <div />
                 <div className="bg-background/80 p-4 sm:p-8 md:p-12 rounded-[1.4rem] md:rounded-[2.8rem] border border-white/5 relative z-10">
                   <form onSubmit={handleStartAudit} className="flex flex-col md:flex-row gap-4 relative z-20">
                     <div className="relative flex-1">

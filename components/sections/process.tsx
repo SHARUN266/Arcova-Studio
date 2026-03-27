@@ -54,17 +54,17 @@ const itemVariants = {
 
 export function Process() {
   return (
-    <section id="process" className="section-padding relative overflow-hidden bg-[#0D0D0D] border-y border-white/5">
+    <section id="process" className="section-padding relative overflow-hidden bg-dark-elevated">
       {/* Background Image Integration */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <Image
           src="/hacker-using-computer-keyboard-with-data-visualization.jpg"
           alt="Technical Process Background"
           fill
-          className="object-cover opacity-20 brightness-[0.4]"
+          className="object-cover opacity-10 brightness-[0.3] grayscale"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0D0D0D] via-transparent to-[#0D0D0D]" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0D0D0D] via-transparent to-[#0D0D0D]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background via-transparent to-background" />
+        <div className="absolute inset-0 bg-gradient-to-r from-background via-transparent to-background" />
       </div>
       <div className="container mx-auto relative z-10">
         <div className="flex flex-col items-center text-center mb-20">
@@ -74,7 +74,7 @@ export function Process() {
             viewport={{ once: true }}
             className="h2-section"
           >
-            <span className="text-accent">7 Days.</span> Live.
+            <span className="text-gradient font-italic-serif font-light">7 Days.</span> Live.
           </motion.h2>
 
           <motion.p
@@ -82,7 +82,7 @@ export function Process() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="max-w-2xl text-muted-foreground md:text-lg"
+            className="max-w-2xl body-large"
           >
             Our streamlined process ensures your business gets a premium online presence
             quickly without compromising on quality or performance.
@@ -106,24 +106,28 @@ export function Process() {
             >
               {/* Connector Line (Desktop) */}
               {index < steps.length - 1 && (
-                <div className="hidden lg:block absolute top-12 left-[60%] w-[80%] h-px bg-border group-hover:bg-primary/30 transition-colors duration-500" />
+                <div className="hidden lg:block absolute top-12 left-[60%] w-[80%] h-px bg-white/10 group-hover:bg-primary/30 transition-colors duration-500 z-0" />
               )}
 
-              <div className="glass p-8 rounded-3xl border border-border group-hover:border-primary/50 transition-all duration-300 h-full relative z-10">
+              <div className="glass group-hover:border-primary/20 p-8 rounded-3xl transition-all duration-500 h-full relative z-10 overflow-hidden hover:shadow-premium group-hover:-translate-y-3">
+                <div className="glass-reflection" />
+                <div className="glow-bg w-32 h-32 -right-10 -top-10 opacity-0 group-hover:opacity-10 transition-opacity duration-500 pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-br from-white/[0.01] to-transparent pointer-events-none" />
+                
                 {/* Step Number */}
-                <span className="absolute top-6 right-8 text-4xl font-black text-foreground/5 group-hover:text-primary/10 transition-colors">
+                <span className="absolute top-6 right-8 text-4xl font-black text-foreground/5 group-hover:text-primary/10 transition-colors font-display">
                   {step.number}
                 </span>
 
-                <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-muted-foreground mb-6 group-hover:scale-110 group-hover:bg-accent group-hover:text-accent-foreground group-hover:border-accent transition-all duration-300">
+                <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-accent/60 mb-6 group-hover:scale-110 group-hover:bg-primary/20 group-hover:text-primary group-hover:border-primary/30 transition-all duration-300 relative z-10">
                   <step.icon size={24} />
                 </div>
 
-                <h3 className="text-xl font-bold mb-3">
+                <h3 className="text-xl font-bold mb-3 relative z-10 font-display">
                   {step.title}
                 </h3>
 
-                <p className="text-muted-foreground text-sm leading-relaxed">
+                <p className="body-base relative z-10">
                   {step.description}
                 </p>
               </div>

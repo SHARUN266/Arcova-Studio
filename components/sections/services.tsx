@@ -1,118 +1,106 @@
 "use client"
 
-import { useEffect, useRef } from "react"
-import { motion } from "framer-motion"
-import gsap from "gsap"
-import { ScrollTrigger } from "gsap/ScrollTrigger"
-import { ArrowRight } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { useRef } from "react"
+import { motion, useInView } from "framer-motion"
 
 const services = [
   {
-    number: "01",
-    title: "Website Design",
-    description: "Modern, high-converting designs built to grab attention in the Agra market.",
+    id: "01",
+    title: "Premium Website Design",
+    description: "Modern, high-converting designs built to grab attention and establish unshakeable trust in the Agra market.",
+    features: ["Bespoke UI/UX Design", "Conversion Rate Optimization", "Interactive Prototypes", "Responsive Matrix"],
     price: "Starting from ₹8,000",
+    glow: "radial-gradient(circle at top left, rgba(56, 189, 248, 0.15), transparent 50%)", // Blue top left
   },
   {
-    number: "02",
-    title: "Web Development",
-    description: "Fast, scalable coding using Next.js and Tailwind. 7-day delivery guaranteed.",
+    id: "02",
+    title: "High-Performance Development",
+    description: "Lightning-fast, scalable frontend coding using Next.js, Framer Motion, and Tailwind CSS. We don't use templates.",
+    features: ["Next.js Architecture", "Advanced Animations", "Headless CMS Integration", "SEO Optimization"],
     price: "Starting from ₹15,000",
+    glow: "radial-gradient(circle at top right, rgba(255, 75, 51, 0.15), transparent 50%)", // Orange top right
   },
   {
-    number: "03",
-    title: "E-commerce Stores",
-    description: "Complete online stores for Sadar Bazaar & local shops with payment integration.",
+    id: "03",
+    title: "E-commerce & Web Apps",
+    description: "Intelligent digital storefronts and web applications engineered for maximum revenue and frictionless user journeys.",
+    features: ["Custom Shopping Carts", "Payment Gateways", "Inventory Sync", "User Dashboards"],
     price: "Starting from ₹40,000",
+    glow: "radial-gradient(circle at bottom left, rgba(255, 75, 51, 0.15), transparent 50%)", // Orange bottom left
   },
   {
-    number: "04",
-    title: "Maintenance & AMC",
-    description: "Ongoing support, security updates, and performance monitoring.",
+    id: "04",
+    title: "Maintenance & Scale",
+    description: "Ongoing technical partnerships. We monitor performance, handle updates, and introduce new features as you grow.",
+    features: ["24/7 Monitoring", "Security Audits", "Content Updates", "A/B Testing"],
     price: "Starting from ₹1,500/mo",
+    glow: "radial-gradient(circle at bottom right, rgba(56, 189, 248, 0.15), transparent 50%)", // Blue bottom right
   },
 ]
-
-const packages = [
-  { name: "Starter", price: "₹8K – ₹15K", features: ["1 Page Landing", "Contact Form", "Basic SEO", "7-Day Delivery"] },
-  { name: "Business", price: "₹20K – ₹40K", features: ["5-10 Pages", "CMS Integration", "Google Maps", "Social Media Setup"] },
-  { name: "E-commerce", price: "₹40K – ₹80K", features: ["Product Catalog", "Payment Gateway", "Inventory Sync", "Admin Panel"] },
-  { name: "AMC", price: "₹1.5K – ₹3K/mo", features: ["Monthly Updates", "Security Scans", "Daily Backups", "Priority Support"] },
-]
-
-function ServiceRow({ service }: { service: typeof services[0] }) {
-  const rowRef = useRef<HTMLDivElement>(null)
-  const borderRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger)
-    const row = rowRef.current
-    const border = borderRef.current
-    if (!row || !border) return
-
-    const tl = gsap.timeline({ paused: true })
-    tl.to(border, { width: "8px", backgroundColor: "var(--accent)", duration: 0.3, ease: "power2.out" })
-    tl.to(row, { x: 10, duration: 0.3, ease: "power2.out" }, 0)
-
-    row.addEventListener("mouseenter", () => tl.play())
-    row.addEventListener("mouseleave", () => tl.reverse())
-
-    return () => {
-      row.removeEventListener("mouseenter", () => tl.play())
-      row.removeEventListener("mouseleave", () => tl.reverse())
-    }
-  }, [])
-
-  return (
-    <div 
-      ref={rowRef}
-      className="group relative flex flex-col md:flex-row md:items-center justify-between py-8 md:py-10 border-b border-white/5 cursor-pointer hover:bg-white/[0.02] transition-colors gap-6 md:gap-0"
-    >
-      <div ref={borderRef} className="absolute left-0 top-0 bottom-0 w-0 bg-transparent" />
-      
-      <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-8 md:gap-16 pl-6 md:pl-8">
-        <span className="label-mono opacity-30 text-xl md:text-2xl">{service.number}</span>
-        <div className="max-w-md pr-6 sm:pr-0">
-          <h3 className="text-xl md:text-2xl font-bold group-hover:text-accent transition-colors mb-2">
-            {service.title}
-          </h3>
-          <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
-            {service.description}
-          </p>
-        </div>
-      </div>
-
-      <div className="flex items-center justify-between md:justify-end w-full md:w-auto pl-6 pr-6 gap-8 pb-2 md:pb-0">
-        <span className="text-lg md:text-xl font-bold font-mono tracking-tight text-accent">
-          {service.price}
-        </span>
-        <div className="w-10 h-10 md:w-12 md:h-12 flex-shrink-0 rounded-full border border-white/10 flex items-center justify-center group-hover:bg-foreground group-hover:text-background transition-all">
-          <ArrowRight size={18} className="md:w-5 md:h-5" />
-        </div>
-      </div>
-    </div>
-  )
-}
 
 export function Services() {
+  const containerRef = useRef(null)
+  const isInView = useInView(containerRef, { once: true, margin: "-10%" })
+
   return (
-    <section id="services" className="section-padding overflow-hidden">
-      <div className="container mx-auto">
-        <div className="flex flex-col mb-20">
-          <span className="label-mono mb-4 text-muted-foreground">Our Services</span>
-          <h2 className="h2-section">
-            <span className="text-accent">World-class</span> code. <br />
-            Local Prices.
+    <section id="services" className="section-padding py-40 relative flex items-center justify-center bg-[#000000] overflow-hidden">
+      <div className="container mx-auto relative z-10 max-w-6xl" ref={containerRef}>
+        
+        {/* Section Header */}
+        <div className="text-center mb-20 flex flex-col items-center">
+          <span className="label-mono mb-6 text-primary tracking-[0.3em] uppercase">Capabilities</span>
+          <h2 className="text-5xl md:text-6xl lg:text-7xl font-sans font-medium tracking-tight leading-tight mb-8">
+            World-class <br />
+            <span className="text-gradient font-italic-serif font-light">Execution.</span>
           </h2>
+          <p className="body-large opacity-60 max-w-2xl leading-relaxed">
+            We bring top-tier engineering and design to local businesses. Discover how we scale teams and revenue.
+          </p>
         </div>
 
-        {/* Standard Services List */}
-        <div className="flex flex-col border-t border-white/5">
-          {services.map((service) => (
-            <ServiceRow key={service.number} service={service} />
+        {/* Bento Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
+          {services.map((service, index) => (
+            <motion.div
+              key={service.id}
+              initial={{ opacity: 0, y: 30 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+              transition={{ duration: 0.8, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
+              className="relative group bg-[#0A0A0A] rounded-[2rem] border border-white/5 overflow-hidden flex flex-col items-center text-center p-8 md:p-12 lg:p-16 min-h-[350px] md:min-h-[400px] h-auto justify-center transition-all duration-500 hover:border-white/10"
+            >
+              {/* Ambient Edge Glow */}
+              <div 
+                className="absolute inset-0 z-0 opacity-60 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none mix-blend-screen"
+                style={{ background: service.glow }}
+              />
+
+              {/* Card Content */}
+              <div className="relative z-10 flex flex-col items-center w-full">
+                <h3 className="text-2xl sm:text-3xl md:text-4xl font-sans font-medium tracking-tight text-white mb-4 md:mb-6">
+                  {service.title}
+                </h3>
+                <p className="text-white/60 text-base sm:text-lg leading-relaxed max-w-sm md:max-w-md mx-auto mb-6 md:mb-8 font-light">
+                  {service.description}
+                </p>
+
+                {/* Hidden Features & Price (Hover Reveal) to maintain minimal look by default */}
+                <div className="w-full h-0 opacity-0 group-hover:h-auto group-hover:opacity-100 transition-all duration-500 overflow-hidden flex flex-col items-center">
+                  <div className="flex flex-wrap justify-center gap-2 mb-6 pointer-events-none">
+                    {service.features.map(f => (
+                      <span key={f} className="text-[10px] uppercase tracking-widest px-3 py-1.5 rounded-full border border-white/10 bg-white/5 text-white/70 font-mono">
+                        {f}
+                      </span>
+                    ))}
+                  </div>
+                  <span className="text-primary font-mono text-sm tracking-widest uppercase font-bold">
+                    {service.price}
+                  </span>
+                </div>
+              </div>
+            </motion.div>
           ))}
         </div>
+        
       </div>
     </section>
   )

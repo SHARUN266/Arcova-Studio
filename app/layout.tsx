@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Outfit, Syne, JetBrains_Mono } from "next/font/google";
+import { Instrument_Serif } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Navbar } from "@/components/navbar/navbar";
@@ -7,21 +7,10 @@ import { Footer } from "@/components/footer/footer";
 import { Schema } from "@/components/seo/schema";
 import { SITE_CONFIG } from "@/lib/seo-data";
 
-const outfit = Outfit({
-  variable: "--font-outfit",
+const instrument = Instrument_Serif({
+  weight: "400",
   subsets: ["latin"],
-});
-
-const syne = Syne({
-  variable: "--font-display",
-  subsets: ["latin"],
-  display: "swap",
-});
-
-const mono = JetBrains_Mono({
-  variable: "--font-mono",
-  subsets: ["latin"],
-  display: "swap",
+  variable: "--font-instrument",
 });
 
 import { CustomCursor } from "@/components/ui/custom-cursor";
@@ -38,7 +27,7 @@ export const metadata: Metadata = {
   description:
     "Premium web design and development studio serving businesses across Agra, Mathura, Firozabad, Vrindavan, and Hathras. Fast, modern websites that help you grow online.",
   icons: {
-    icon: "/favicon.ico",
+    icon: "/favicon.png",
     apple: "/logo.png",
   },
   alternates: {
@@ -87,9 +76,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning className="overflow-x-hidden">
+      <head>
+        <link href="https://api.fontshare.com/v2/css?f[]=satoshi@900,700,500,400,300&display=swap" rel="stylesheet" />
+      </head>
       <body
-        className={`${outfit.variable} ${syne.variable} ${mono.variable} antialiased selection:bg-primary/30 selection:text-white`}
+        className={`${instrument.variable} font-sans antialiased overflow-x-hidden w-full selection:bg-primary/30 selection:text-white`}
       >
         <Schema />
         <Analytics />
@@ -99,6 +91,7 @@ export default function RootLayout({
           forcedTheme="dark"
           disableTransitionOnChange
         >
+          <div className="grain-overlay" aria-hidden="true" />
           <CustomCursor />
           <ScrollProgress />
           <WhatsAppButton />

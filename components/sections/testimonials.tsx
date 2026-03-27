@@ -2,7 +2,8 @@
 
 import React from "react"
 import { motion } from "framer-motion"
-import { Star, Quote, MapPin } from "lucide-react"
+import { Star, Quote, TrendingUp } from "lucide-react"
+import { Counter } from "@/components/ui/counter"
 
 const testimonials = [
   {
@@ -11,8 +12,13 @@ const testimonials = [
     role: "Owner",
     avatar: "/images/testimonials/avatar1.png",
     location: "Sadar Bazaar, Agra",
-    text: "Actually, we were struggling with an old website that didn't show our craft properly. The Arcova team came to our workshop, understood how we work, and built something that genuinely represents us. It's not just about a website; they understand the Agra business mindset.",
-    tag: "Traditional Business"
+    text: "Actually, we were struggling with an old website that didn't show our craft properly. The Arcova team came to our workshop, understood how we work, and built something that genuinely represents us.",
+    tag: "Traditional Business",
+    results: {
+      value: 215,
+      suffix: "%",
+      label: "Increase in B2B Inquiries"
+    }
   },
   {
     name: "Dr. Varun Kalra",
@@ -20,8 +26,13 @@ const testimonials = [
     role: "Lead Surgeon",
     avatar: "/images/testimonials/avatar2.png",
     location: "Sanjay Place, Agra",
-    text: "Most agencies just promised traffic, but these guys fixed our patient booking flow. It's much simpler now. Being able to meet them at Sanjay Place for a quick discussion makes everything so much easier than working with someone in Delhi or Bangalore.",
-    tag: "Healthcare"
+    text: "Most agencies just promised traffic, but these guys fixed our patient booking flow. It's much simpler now. Being able to meet them locally makes everything so much easier than working with an agency far away.",
+    tag: "Healthcare",
+    results: {
+      value: 40,
+      suffix: "%",
+      label: "More Online Bookings"
+    }
   },
   {
     name: "Karan Malhotra",
@@ -29,53 +40,67 @@ const testimonials = [
     role: "Founder",
     avatar: "/images/testimonials/avatar3.png",
     location: "Fatehabad Road, Agra",
-    text: "Our restaurant needed a digital presence that matched our food quality. They did an amazing job with the photography and the layout. Our reservations have definitely seen a boost. Very grounded and professional team.",
-    tag: "Hospitality"
+    text: "Our restaurant needed a digital presence that matched our food quality. They did an amazing job with the photography and the layout. Our reservations have definitely seen a boost. Very grounded team.",
+    tag: "Hospitality",
+    results: {
+      value: 3,
+      suffix: "x",
+      label: "Return on Investment"
+    }
   },
-  
-  
 ]
 
 function TestimonialCard({ testimonial, index }: { testimonial: typeof testimonials[0], index: number }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
+      viewport={{ once: true, margin: "-10%" }}
       transition={{ 
         duration: 0.8, 
-        delay: index * 0.1, 
+        delay: index * 0.15, 
         ease: [0.16, 1, 0.3, 1] as any 
       }}
-      className="group bg-card border border-border p-8 md:p-12 rounded-[2rem] hover:border-accent/40 transition-all duration-500 relative flex flex-col h-full shadow-sm"
+      className="group relative bg-card border border-white/5 rounded-[2rem] p-8 md:p-10 flex flex-col h-full overflow-hidden shadow-premium hover:border-primary/20 transition-all duration-500"
     >
-      <div className="flex justify-between items-start mb-8 md:mb-10">
-        <div className="flex gap-1 text-accent/80">
-          {[...Array(5)].map((_, i) => (
-            <Star key={i} size={14} fill="currentColor" className="opacity-80" />
-          ))}
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none mix-blend-screen" />
+      
+      {/* Metric Highlight (Case Study Feel) */}
+      <div className="flex justify-between items-start mb-10 relative z-10 w-full">
+        <div className="bg-primary/5 border border-primary/20 rounded-2xl p-4 flex items-center gap-4 backdrop-blur-md">
+          <div className="w-10 h-10 shrink-0 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+            <TrendingUp size={18} />
+          </div>
+          <div>
+            <div className="text-2xl font-black font-display text-white flex items-baseline leading-none mb-1">
+              {testimonial.results.suffix === "x" ? (
+                 <><Counter value={testimonial.results.value} /><span className="text-primary text-xl ml-0.5">{testimonial.results.suffix}</span></>
+              ) : (
+                <><Counter value={testimonial.results.value} /><span className="text-primary text-xl ml-0.5">{testimonial.results.suffix}</span></>
+              )}
+            </div>
+            <p className="text-[9px] uppercase font-bold tracking-widest text-white/50 leading-tight block w-24 sm:w-auto break-words">{testimonial.results.label}</p>
+          </div>
         </div>
-        <Quote className="text-white/5 group-hover:text-accent/10 transition-colors duration-500" size={40} strokeWidth={1} />
+        <Quote className="text-white/5 group-hover:text-primary/20 transition-colors duration-500 transform group-hover:scale-110 group-hover:rotate-6 shrink-0 ml-4" size={50} strokeWidth={1} />
       </div>
 
-      <p className="body-large mb-12 flex-grow text-foreground/90 font-light tracking-tight italic">
+      <p className="body-large mb-12 flex-grow text-white/80 font-light leading-relaxed">
         &ldquo;{testimonial.text}&rdquo;
       </p>
 
-      <div className="flex items-center gap-5 pt-8 border-t border-white/5">
-        <div className="w-14 h-14 rounded-2xl border border-accent/10 overflow-hidden bg-accent/5">
+      {/* Human Touch / Avatar */}
+      <div className="flex items-center gap-5 pt-8 border-t border-white/5 relative z-10">
+        <div className="relative w-16 h-16 rounded-full overflow-hidden border-2 border-primary/20 group-hover:border-primary transition-colors duration-500 shrink-0">
+          <div className="absolute inset-0 bg-primary/20 animate-pulse mix-blend-overlay" />
           <img src={testimonial.avatar} alt={testimonial.name} className="w-full h-full object-cover" />
         </div>
         <div className="flex flex-col">
-          <span className="font-bold text-xl text-foreground leading-tight mb-1">
+          <span className="font-bold text-lg text-white leading-tight mb-1">
             {testimonial.name}
           </span>
-          <div className="flex items-center gap-2 opacity-40">
-            <MapPin size={10} className="text-accent" />
-            <span className="text-[10px] uppercase font-mono tracking-widest">{testimonial.business}</span>
-            <span className="w-1 h-1 rounded-full bg-accent/20" />
-            <span className="text-[10px] uppercase font-mono tracking-widest">{testimonial.location}</span>
-          </div>
+          <span className="text-xs text-white/40 mb-1">{testimonial.role}, {testimonial.business}</span>
+          <span className="text-[10px] uppercase font-mono tracking-widest text-primary/60">{testimonial.tag}</span>
         </div>
       </div>
     </motion.div>
@@ -84,56 +109,37 @@ function TestimonialCard({ testimonial, index }: { testimonial: typeof testimoni
 
 export function Testimonials() {
   return (
-    <section id="testimonials" className="section-padding bg-background relative border-t border-white/5">
-      <div className="container mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 mb-16 md:mb-24 items-end">
-          <div className="max-w-xl">
-            <span className="label-mono mb-4 block text-accent/60">Direct Feedback</span>
-            <h2 className="h2-section font-black mb-0 tracking-tighter">
-              Real Stories from <br />
-              <span className="text-accent italic">Agra Businesses.</span>
+    <section id="testimonials" className="section-padding py-32 relative overflow-hidden bg-dark-surface">
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px] bg-primary/5 rounded-full blur-[200px] pointer-events-none" />
+      
+      <div className="container mx-auto relative z-10">
+        <div className="flex flex-col md:flex-row justify-between items-end gap-10 mb-20">
+          <div className="max-w-2xl">
+            <span className="label-mono mb-4 block text-primary/80 tracking-[0.3em] uppercase">Client Success</span>
+            <h2 className="text-5xl md:text-6xl lg:text-7xl font-display font-black tracking-tighter leading-tight mb-0">
+              Real Impact for <br />
+              <span className="text-gradient font-italic-serif font-light">Agra Brands.</span>
             </h2>
           </div>
-          <div>
-            <p className="body-large opacity-80 max-w-lg">
-              We don&apos;t just build websites; we build partnerships. Here is how we help local business owners succeed in the digital age.
-            </p>
-          </div>
-        </div>
-
-        {/* Masonry-style Grid for an organic feel */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
-          {testimonials.map((testimonial, idx) => (
-            <TestimonialCard key={testimonial.name} testimonial={testimonial} index={idx} />
-          ))}
-        </div>
-
-        {/* Reputation Footer */}
-        <div className="mt-16 md:mt-24 pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-start md:items-center gap-10">
-          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6">
-            <div className="flex -space-x-4 shrink-0">
-              {Object.values(testimonials).slice(0, 4).map((t, i) => (
-                <div key={i} className="w-12 h-12 md:w-10 md:h-10 rounded-full border-2 border-[#0A0908] overflow-hidden shadow-lg hover:z-10 transition-all duration-300">
-                  <img src={t.avatar} alt="Client" className="w-full h-full object-cover" />
-                </div>
-              ))}
-              <div className="w-12 h-12 md:w-10 md:h-10 rounded-full border-2 border-[#0A0908] bg-accent/20 flex items-center justify-center text-[10px] font-black text-accent-foreground shadow-lg backdrop-blur-sm relative z-0">
-                +
+          <div className="pb-2">
+            <div className="flex items-center gap-3 px-6 py-3 rounded-full bg-white/5 border border-white/10 backdrop-blur-md group hover:bg-white/10 transition-colors">
+              <div className="flex gap-1 text-primary group-hover:scale-105 transition-transform">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} size={14} fill="currentColor" />
+                ))}
               </div>
+              <span className="text-sm font-bold text-white font-mono">4.9/5 Average Rating</span>
             </div>
-            <p className="text-xs md:text-sm md:opacity-40 font-mono tracking-wide uppercase text-muted-foreground md:text-inherit">
-              Joined by 28+ local partners in Agra
-            </p>
           </div>
-          
-          <div className="flex items-center justify-center w-full md:w-auto gap-4 bg-secondary border border-accent/20 px-8 py-5 md:py-4 rounded-2xl shadow-xl shadow-accent/5 backdrop-blur-3xl group hover:border-accent/40 transition-colors duration-500">
-            <div className="flex gap-1 text-accent">
-              {[...Array(5)].map((_, i) => (
-                <Star key={i} size={14} fill="currentColor" />
-              ))}
+        </div>
+
+        {/* Masonry-style/Case-study Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 pb-12">
+          {testimonials.map((testimonial, idx) => (
+            <div key={testimonial.name} className={idx === 1 ? "md:translate-y-12 lg:translate-y-16" : idx === 2 ? "md:translate-y-0 lg:translate-y-32" : ""}>
+               <TestimonialCard testimonial={testimonial} index={idx} />
             </div>
-            <span className="text-sm font-bold text-foreground">4.9 on Google Business</span>
-          </div>
+          ))}
         </div>
       </div>
     </section>

@@ -1,13 +1,9 @@
 "use client"
 
 import * as React from "react"
-import { useEffect, useRef } from "react"
-import { motion, AnimatePresence } from "framer-motion"
-import Image from "next/image"
-import gsap from "gsap"
-import { ScrollTrigger } from "gsap/ScrollTrigger"
-import { ArrowUpRight, MapPin } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { useRef } from "react"
+import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion"
+import { ArrowUpRight } from "lucide-react"
 
 const projects = [
   {
@@ -15,170 +11,152 @@ const projects = [
     description: "A high-performance URL shortening SaaS with real-time analytics and lightning-fast redirection.",
     category: "SaaS / Utility",
     url: "https://shorturlbysharun.netlify.app",
-    tags: ["Next.js", "Redis", "Analytics"]
+    tags: ["Next.js", "Redis", "Analytics"],
+    accent: "from-blue-500/20 to-cyan-500/20"
   },
   {
     title: "Violent Hope",
     description: "An immersive, luxury-focused digital experience pushing the boundaries of modern web UI.",
     category: "Creative / UI",
     url: "https://violent-hope.netlify.app",
-    tags: ["Framer Motion", "GSAP", "Premium"]
+    tags: ["Framer Motion", "GSAP", "Premium"],
+    accent: "from-purple-500/20 to-pink-500/20"
   },
   {
     title: "Harvest Core",
     description: "Full-stack productivity platform featuring complex state management and intuitive user workflows.",
     category: "EdTech / Productivity",
     url: "https://get-harvest-rct201clone.netlify.app",
-    tags: ["React", "Redux", "Fullstack"]
+    tags: ["React", "Redux", "Fullstack"],
+    accent: "from-secondary/20 to-primary/20"
   },
   {
     title: "Electro Care",
     description: "Service-oriented E-commerce solution optimized for conversion and seamless user interaction.",
     category: "E-commerce / Service",
     url: "https://electro-care.vercel.app",
-    tags: ["Tailwind", "Responsive", "Sales"]
+    tags: ["Tailwind", "Responsive", "Sales"],
+    accent: "from-orange-500/20 to-yellow-500/20"
   },
 ]
 
-function ProjectCard({ project, index }: { project: typeof projects[0], index: number }) {
+function ProjectCard({ project, index, progress }: { project: typeof projects[0], index: number, progress: any }) {
   const [isLoading, setIsLoading] = React.useState(true)
   const containerRef = useRef<HTMLDivElement>(null)
-  const [scale, setScale] = React.useState(1)
 
-  useEffect(() => {
-    const updateScale = () => {
-      if (containerRef.current) {
-        const width = containerRef.current.offsetWidth
-        setScale(width / 1200) // Base width for scaling
-      }
-    }
-
-    updateScale()
-    window.addEventListener('resize', updateScale)
-    return () => window.removeEventListener('resize', updateScale)
-  }, [])
+  // Dynamic scale and opacity based on scroll to create a stacking effect
+  const offset = index * 0.2
+  const cardScale = useTransform(progress, [offset, offset + 0.2], [1, 0.95])
+  const cardOpacity = useTransform(progress, [offset, offset + 0.2], [1, 0.5])
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.8, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
-      className="group relative flex flex-col"
+      style={{ scale: cardScale, opacity: cardOpacity }}
+      className="sticky top-24 w-full min-h-[70vh] rounded-[2.5rem] p-6 md:p-12 mb-24 border border-white/5 bg-card shadow-2xl overflow-hidden group flex flex-col md:flex-row gap-8 md:gap-12 items-center origin-top will-change-transform"
     >
-      {/* Visual Preview Container (Live Iframe) */}
+      {/* Background Glow Overlay */}
+      <div className={`absolute inset-0 bg-gradient-to-br ${project.accent} opacity-0 group-hover:opacity-20 transition-opacity duration-1000 blur-3xl pointer-events-none mix-blend-screen`} />
+
+      {/* Content Side */}
+      <div className="w-full md:w-1/3 flex flex-col gap-6 relative z-10">
+        <div className="px-4 py-2 rounded-full border border-white/10 w-fit backdrop-blur-md">
+          <span className="text-[10px] font-mono font-bold text-primary uppercase tracking-widest">
+            {project.category}
+          </span>
+        </div>
+
+        <h3 className="text-4xl md:text-5xl font-display font-black text-white leading-tight">
+          {project.title}
+        </h3>
+
+        <p className="body-large text-white/60 leading-relaxed">
+          {project.description}
+        </p>
+
+        <div className="flex flex-wrap gap-2 mt-2">
+          {project.tags.map(tag => (
+            <span key={tag} className="px-3 py-1 rounded-full bg-white/5 text-[10px] uppercase font-bold tracking-widest text-white/50 border border-white/5">
+              {tag}
+            </span>
+          ))}
+        </div>
+
+        <button
+          onClick={() => window.open(project.url, "_blank")}
+          className="mt-6 flex items-center gap-3 text-sm font-bold uppercase tracking-widest text-primary hover:text-white transition-colors group/btn w-fit"
+        >
+          <span className="border-b border-transparent group-hover/btn:border-primary pb-1 transition-all">Explore Live Site</span>
+          <div className="w-10 h-10 rounded-full border border-primary/30 flex items-center justify-center group-hover/btn:bg-primary group-hover/btn:text-black transition-all">
+            <ArrowUpRight size={16} className="group-hover/btn:rotate-12 transition-transform" />
+          </div>
+        </button>
+      </div>
+
+      {/* Visual Preview Side (Iframe with scroll simulation) */}
       <div
         ref={containerRef}
-        className="relative aspect-[16/10] rounded-3xl overflow-hidden bg-[#0A0908] border border-white/5 cursor-pointer group-hover:border-accent/40 transition-all duration-500 shadow-2xl"
+        className="w-full md:w-2/3 h-[50vh] md:h-[65vh] rounded-2xl md:rounded-[2rem] overflow-hidden bg-black/50 border border-white/10 relative group/mockup cursor-pointer shadow-premium"
         onClick={() => window.open(project.url, "_blank")}
       >
-        {/* Loading Spinner */}
         <AnimatePresence>
           {isLoading && (
             <motion.div
               initial={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="absolute inset-0 z-40 flex items-center justify-center bg-black"
+              className="absolute inset-0 z-40 flex items-center justify-center bg-[#0a1612]"
             >
-              <div className="w-8 h-8 border-2 border-accent/20 border-t-accent rounded-full animate-spin" />
+              <div className="w-8 h-8 border-2 border-primary/30 border-t-primary rounded-full animate-spin" />
             </motion.div>
           )}
         </AnimatePresence>
 
-        {/* Iframe Scaling Container */}
-        <div
-          className="absolute top-0 left-0 w-[1200px] origin-top-left"
-          style={{
-            transform: `scale(${scale})`,
-            height: `${100 / scale}%`
-          }}
-        >
+        <div className="w-full h-full absolute top-0 left-0">
           <iframe
             src={project.url}
-            allow="geolocation"
             onLoad={() => setIsLoading(false)}
-            className="w-full h-full border-0 pointer-events-none  group-hover:grayscale-0 transition-all duration-700 group-hover:[animation-play-state:paused]"
+            className="w-full h-full border-0 pointer-events-none opacity-80 group-hover/mockup:opacity-100 transition-opacity duration-500"
             title={project.title}
             loading="lazy"
-            
           />
         </div>
 
-        {/* Protective & Interactive Overlay */}
-        <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 group-hover:opacity-20 transition-opacity duration-500" />
-
-        <div className="absolute inset-0 z-20 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center backdrop-blur-[2px]">
-          <Button
-            className="rounded-full bg-accent text-accent-foreground font-black px-8 py-6 h-auto shadow-2xl hover:scale-110 transition-transform border-0 flex items-center gap-2"
-          >
-            VISIT LIVE SITE <ArrowUpRight size={20} />
-          </Button>
-        </div>
-
-        {/* Floating Category Badge */}
-        <div className="absolute top-6 left-6 z-30 px-4 py-2 rounded-full bg-black/60 backdrop-blur-xl border border-white/10">
-          <span className="text-[10px] font-mono font-bold text-accent uppercase tracking-widest">
-            {project.category}
-          </span>
-        </div>
-      </div>
-
-      {/* Project Details */}
-      <div className="mt-8 px-2">
-        <div className="flex items-center justify-between mb-3">
-          <h3 className="text-2xl font-display font-bold text-foreground">
-            {project.title}
-          </h3>
-          <div className="flex gap-2">
-            {project.tags.map(tag => (
-              <span key={tag} className="text-[10px] uppercase tracking-wider opacity-40 font-mono">
-                {tag}
-              </span>
-            ))}
-          </div>
-        </div>
-        <p className="body-base opacity-60 leading-relaxed max-w-lg mb-6 line-clamp-2">
-          {project.description}
-        </p>
-
-        <button
-          onClick={() => window.open(project.url, "_blank")}
-          className="flex items-center gap-2 text-xs font-black uppercase tracking-widest text-accent hover:text-accent/80 transition-colors group/link"
-        >
-          View Live Project
-          <ArrowUpRight size={14} className="group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform" />
-        </button>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-100 group-hover/mockup:opacity-0 transition-opacity duration-700 z-10 pointer-events-none" />
       </div>
     </motion.div>
   )
 }
 
 export function Portfolio() {
+  const containerRef = useRef<HTMLDivElement>(null)
+
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"]
+  })
+
   return (
-    <section id="work" className="section-padding py-32 overflow-hidden bg-background">
+    <section id="work" ref={containerRef} className="section-padding py-32 bg-dark-background relative z-20">
       <div className="container mx-auto">
-        {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-10 mb-24">
-          <div className="max-w-2xl">
-            <span className="label-mono mb-4 block text-accent/60">Featured Impact</span>
-            <h2 className="h2-section font-black tracking-tighter">
-              Selected <span className="text-accent italic underline decoration-accent/20">Work.</span>
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-10 mb-32">
+          <div className="max-w-3xl relative">
+            <span className="label-mono mb-6 block text-primary/80 tracking-[0.3em] uppercase">Impact Driven</span>
+            <h2 className="text-5xl md:text-7xl font-display font-black tracking-tighter leading-tight mb-8">
+              Selected <span className="text-gradient italic font-light font-serif">Work.</span>
             </h2>
-            <p className="body-large opacity-70 leading-relaxed">
-              We focus on quality over quantity. Here are the partners we&apos;ve helped
-              transform into digital leaders in the Agra market.
+            <p className="body-large opacity-70 leading-relaxed max-w-xl">
+              We create robust, premium platforms that separate our clients from their competition.
             </p>
           </div>
-          <Button variant="outline" className="rounded-full px-10 h-14 border-accent/20 hover:bg-accent/5 hidden md:flex text-sm font-bold uppercase tracking-widest">
-            View All Projects
-            <ArrowUpRight className="ml-2" size={20} />
-          </Button>
         </div>
 
-        {/* Projects Grid - Focused & Breathable */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 lg:gap-24">
+        <div className="relative pb-12 w-full">
           {projects.map((project, index) => (
-            <ProjectCard key={project.title} project={project} index={index} />
+            <ProjectCard
+              key={project.title}
+              project={project}
+              index={index}
+              progress={scrollYProgress}
+            />
           ))}
         </div>
       </div>

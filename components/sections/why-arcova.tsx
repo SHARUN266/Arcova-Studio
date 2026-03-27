@@ -33,27 +33,27 @@ const reasons = [
 
 export function WhyArcova() {
   return (
-    <section className="section-padding relative overflow-hidden bg-[#0D0D0D]">
+    <section className="section-padding relative overflow-hidden bg-dark-elevated">
       {/* Background Image Integration */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <Image
           src="/hero_background.jpg"
           alt="Agra Growth Background"
           fill
-          className="object-cover opacity-30 grayscale brightness-[0.4]"
+          className="object-cover opacity-10 grayscale brightness-[0.3]"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0D0D0D] via-transparent to-[#0D0D0D]" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0D0D0D] via-transparent to-[#0D0D0D]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background via-transparent to-background" />
+        <div className="absolute inset-0 bg-gradient-to-r from-background via-transparent to-background" />
       </div>
 
       <div className="container mx-auto relative z-10">
         {/* Trust Badges Bar */}
-        <div className="flex flex-wrap justify-center gap-8 mb-24 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
+        <div className="flex flex-wrap justify-center gap-8 mb-24 opacity-40 grayscale hover:grayscale-0 transition-all duration-500">
           {trustBadges.map((badge) => (
             <div key={badge.label} className="flex items-center gap-3">
-              <badge.icon size={20} className="text-muted-foreground" />
-              <span className="font-mono text-[10px] uppercase tracking-widest font-bold text-muted-foreground">
+              <badge.icon size={18} className="text-accent/60" />
+              <span className="label-mono text-[10px] tracking-widest text-muted-foreground">
                 {badge.label}
               </span>
             </div>
@@ -61,13 +61,13 @@ export function WhyArcova() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          <div>
+          <div className="relative z-10">
             <span className="label-mono mb-4 block text-accent/60 tracking-[0.3em]">Engineering Brilliance</span>
             <h2 className="h2-section">
               Agra's Dedicated <br />
-              <span className="text-accent">Growth</span> Partners.
+              <span className="text-gradient font-italic-serif font-light">Growth</span> Partners.
             </h2>
-            <p className="text-lg md:text-xl text-muted-foreground mb-12 max-w-lg">
+            <p className="body-large mb-12 max-w-lg">
               We understand the local market better than anyone. We help Agra's businesses
               bridge the gap between local charm and digital excellence.
             </p>
@@ -78,13 +78,14 @@ export function WhyArcova() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 1 }}
-              className="mt-8 hidden lg:block"
+              className="mt-8 hidden lg:block p-8 border-white/5 "
             >
+              {/* <div className="glass-reflection" /> */}
               <TechCore />
             </motion.div>
           </div>
 
-          <div className="space-y-8">
+          <div className="space-y-6">
             {reasons.map((reason, index) => (
               <motion.div
                 key={reason.title}
@@ -92,14 +93,18 @@ export function WhyArcova() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="glass p-8 rounded-3xl border-white/5 flex gap-6 hover:border-primary/50 transition-colors group"
+                className="glass group p-8 rounded-3xl border-white/5 flex gap-6 hover:-translate-y-3 transition-all duration-500 relative overflow-hidden hover:border-primary/20 shadow-premium"
               >
-                <div className="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-muted-foreground shrink-0 group-hover:bg-foreground group-hover:text-background transition-all duration-300">
+                <div className="glass-reflection" />
+                <div className="glow-bg w-24 h-24 -right-10 -bottom-10 opacity-0 group-hover:opacity-10 transition-opacity duration-500 pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-br from-white/[0.01] to-transparent pointer-events-none" />
+                
+                <div className="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-accent/60 shrink-0 group-hover:bg-primary/20 group-hover:text-primary group-hover:border-primary/30 transition-all duration-300 relative z-10">
                   <reason.icon size={28} />
                 </div>
-                <div>
-                  <h3 className="text-xl font-bold mb-2">{reason.title}</h3>
-                  <p className="text-muted-foreground leading-relaxed">
+                <div className="relative z-10">
+                  <h3 className="text-xl font-bold mb-2 font-display">{reason.title}</h3>
+                  <p className="body-base">
                     {reason.description}
                   </p>
                 </div>

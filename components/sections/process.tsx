@@ -7,29 +7,30 @@ import { PhoneCall, PencilRuler, ClipboardCheck, Rocket } from "lucide-react"
 const steps = [
   {
     number: "01",
-    title: "Pehle Hum Baat Karenge",
-    description: "Hum aapke business ko samjhenge, aapki audience ko dekhenge aur budget guide karenge. Sab face-to-face ya call par.",
+    title: "Strategic Audit",
+    description: "We deep-scan your current digital presence to find exactly where you are losing leads and potential revenue.",
     icon: PhoneCall,
   },
   {
     number: "02",
-    title: "Phir Aapka Design Banega",
-    description: "Aapka design finalize hone ke baad, hum agle 7 din mein code likhkar aapki site ready kar denge.",
+    title: "System Build",
+    description: "We engineer your Conversion-Engine website and integrated lead-capture automation specifically for the Agra market.",
     icon: PencilRuler,
   },
   {
     number: "03",
-    title: "Aap Dekhenge, Hum Sudharenge",
-    description: "Site banne ke baad, hum aapko dikhayenge. Agar kuch badalna ho toh hum 2 revisions bilkul free karenge.",
+    title: "Deployment",
+    description: "Your system goes live. We ensure every integration is working perfectly to capture and track every single lead.",
     icon: ClipboardCheck,
   },
   {
     number: "04",
-    title: "Finally, Aapki Site Live",
-    description: "Sab perfect hone par site live jayegi. Aur hum hamesha support ke liye available rahenge.",
+    title: "ROI Optimization",
+    description: "We don't just leave. We monitor the data and optimize your system and ads to drive down lead costs over time.",
     icon: Rocket,
   },
 ]
+
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -67,7 +68,8 @@ export function Process() {
         <div className="absolute inset-0 bg-gradient-to-r from-background via-transparent to-background" />
       </div>
       <div className="container mx-auto relative z-10">
-        <div className="flex flex-col items-center text-center mb-20">
+        <div className="flex flex-col items-center text-center mb-12 md:mb-20">
+
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}

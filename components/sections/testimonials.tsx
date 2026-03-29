@@ -109,11 +109,11 @@ function TestimonialCard({ testimonial, index }: { testimonial: typeof testimoni
 
 export function Testimonials() {
   return (
-    <section id="testimonials" className="section-padding py-32 relative overflow-hidden bg-dark-surface">
+    <section id="testimonials" className="section-padding relative overflow-hidden bg-dark-surface">
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px] bg-primary/5 rounded-full blur-[200px] pointer-events-none" />
       
       <div className="container mx-auto relative z-10">
-        <div className="flex flex-col md:flex-row justify-between items-end gap-10 mb-20">
+        <div className="flex flex-col md:flex-row justify-between items-end gap-10 mb-12 md:mb-20">
           <div className="max-w-2xl">
             <span className="label-mono mb-4 block text-primary/80 tracking-[0.3em] uppercase">Client Success</span>
             <h2 className="text-5xl md:text-6xl lg:text-7xl font-display font-black tracking-tighter leading-tight mb-0">

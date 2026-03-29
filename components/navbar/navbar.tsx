@@ -31,15 +31,24 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
+  React.useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden"
+    } else {
+      document.body.style.overflow = "unset"
+    }
+  }, [isOpen])
+
   return (
     <header
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
-        scrolled
-          ? "glass py-3 border-b"
+        "fixed top-0 left-0 right-0 z-[100] transition-all duration-500",
+        scrolled || isOpen
+          ? "bg-[#050505] border-b border-white/5 shadow-2xl py-3"
           : "bg-transparent py-6"
       )}
     >
+
       <nav className="container mx-auto px-6 md:px-12 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-3 group">
           <div className="relative w-10 h-10">
@@ -140,11 +149,11 @@ export function Navbar() {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.3, ease: "easeOut" }}
-            className="md:hidden glass border-b overflow-hidden shadow-2xl"
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+            className="md:hidden bg-[#050505] border-b border-white/5 overflow-hidden shadow-2xl relative z-[110]"
           >
             <div className="container mx-auto px-6 py-10 flex flex-col gap-8">
               <ul className="flex flex-col gap-6">

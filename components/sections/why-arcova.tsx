@@ -15,21 +15,22 @@ const trustBadges = [
 
 const reasons = [
   {
-    title: "Local Agency (Agra mein hain)",
-    description: "No more calling remote agencies. We are based right here in Agra, ready to meet face-to-face.",
+    title: "Agra's Growth Partners",
+    description: "We don't just 'deliver projects.' We partner with you to hit your monthly revenue goals through better digital strategy.",
     icon: MapPin,
   },
   {
-    title: "Delhi Quality at Half the Price",
-    description: "Get premium, world-class design and performance without the high-tier metropolitan costs.",
+    title: "Conversion-First DNA",
+    description: "Most agencies build pretty sites. We build sites that force users to take action and book your services.",
     icon: Star,
   },
   {
-    title: "Face-to-Face Meetings Possible",
-    description: "We value personal connection. Direct communication leads to better results and faster delivery.",
+    title: "Direct Support (No Fluff)",
+    description: "You get a dedicated growth lead in Agra. No complex terminology, just clear reports on your leads and ROI.",
     icon: Users,
   },
 ]
+
 
 export function WhyArcova() {
   return (
@@ -49,7 +50,7 @@ export function WhyArcova() {
 
       <div className="container mx-auto relative z-10">
         {/* Trust Badges Bar */}
-        <div className="flex flex-wrap justify-center gap-8 mb-24 opacity-40 grayscale hover:grayscale-0 transition-all duration-500">
+        <div className="flex flex-wrap justify-center gap-6 sm:gap-8 mb-12 md:mb-24 opacity-40 grayscale hover:grayscale-0 transition-all duration-500">
           {trustBadges.map((badge) => (
             <div key={badge.label} className="flex items-center gap-3">
               <badge.icon size={18} className="text-accent/60" />

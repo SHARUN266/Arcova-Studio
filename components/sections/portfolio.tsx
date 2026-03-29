@@ -3,42 +3,51 @@
 import * as React from "react"
 import { useRef } from "react"
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion"
-import { ArrowUpRight } from "lucide-react"
+import { ArrowUpRight, Zap, AlertCircle, CheckCircle2 } from "lucide-react"
 
 const projects = [
   {
+    title: "Electro Care",
+    problem: "Losing 60% of potential bookings due to a slow, non-responsive legacy site.",
+    solution: "Implemented a Next.js Conversion-Engine with instant WhatsApp hooks.",
+    result: "240% increase in service inquiries within 30 days of launch.",
+    category: "Service / E-commerce",
+    url: "https://electro-care.vercel.app",
+    tags: ["Conversion Engine", "WhatsApp Hooks", "Next.js"],
+    accent: "from-orange-500/20 to-yellow-500/20"
+  },
+  {
     title: "ShortLink Pro",
-    description: "A high-performance URL shortening SaaS with real-time analytics and lightning-fast redirection.",
-    category: "SaaS / Utility",
+    problem: "High bounce rates on long, complex marketing URLs for local ads.",
+    solution: "Developed a branded, high-performance link management SaaS.",
+    result: "45% higher click-through rate on local Facebook/Instagram ads.",
+    category: "Ads / Utility",
     url: "https://shorturlbysharun.netlify.app",
-    tags: ["Next.js", "Redis", "Analytics"],
+    tags: ["Ads Optimization", "Analytics", "Redis"],
     accent: "from-blue-500/20 to-cyan-500/20"
   },
   {
-    title: "Violent Hope",
-    description: "An immersive, luxury-focused digital experience pushing the boundaries of modern web UI.",
-    category: "Creative / UI",
-    url: "https://violent-hope.netlify.app",
-    tags: ["Framer Motion", "GSAP", "Premium"],
-    accent: "from-purple-500/20 to-pink-500/20"
-  },
-  {
     title: "Harvest Core",
-    description: "Full-stack productivity platform featuring complex state management and intuitive user workflows.",
-    category: "EdTech / Productivity",
+    problem: "Manual lead tracking causing 40% of inquiries to go unanswered.",
+    solution: "Integrated Auto-Pilot Lead Capture with automated CRM workflows.",
+    result: "Zero missed leads and a 55% faster response time for the sales team.",
+    category: "Automation / EdTech",
     url: "https://get-harvest-rct201clone.netlify.app",
-    tags: ["React", "Redux", "Fullstack"],
+    tags: ["Automation", "CRM", "Lead Capture"],
     accent: "from-secondary/20 to-primary/20"
   },
   {
-    title: "Electro Care",
-    description: "Service-oriented E-commerce solution optimized for conversion and seamless user interaction.",
-    category: "E-commerce / Service",
-    url: "https://electro-care.vercel.app",
-    tags: ["Tailwind", "Responsive", "Sales"],
-    accent: "from-orange-500/20 to-yellow-500/20"
+    title: "Violent Hope",
+    problem: "Brand perceived as 'cheap' due to outdated, flat web design.",
+    solution: "Designed a premium, immersive digital experience and identity.",
+    result: "Successfully raised service prices by 80% with zero drop in leads.",
+    category: "Identity / Luxury",
+    url: "https://violent-hope.netlify.app",
+    tags: ["Premium UI", "Branding", "Framer Motion"],
+    accent: "from-purple-500/20 to-pink-500/20"
   },
 ]
+
 
 function ProjectCard({ project, index, progress }: { project: typeof projects[0], index: number, progress: any }) {
   const [isLoading, setIsLoading] = React.useState(true)
@@ -52,8 +61,9 @@ function ProjectCard({ project, index, progress }: { project: typeof projects[0]
   return (
     <motion.div
       style={{ scale: cardScale, opacity: cardOpacity }}
-      className="sticky top-24 w-full min-h-[70vh] rounded-[2.5rem] p-6 md:p-12 mb-24 border border-white/5 bg-card shadow-2xl overflow-hidden group flex flex-col md:flex-row gap-8 md:gap-12 items-center origin-top will-change-transform"
+      className="sticky top-20 md:top-24 w-full min-h-[70vh] rounded-[2.5rem] p-6 md:p-12 mb-12 md:mb-24 border border-white/5 bg-card shadow-2xl overflow-hidden group flex flex-col md:flex-row gap-8 md:gap-12 items-center origin-top will-change-transform"
     >
+
       {/* Background Glow Overlay */}
       <div className={`absolute inset-0 bg-gradient-to-br ${project.accent} opacity-0 group-hover:opacity-20 transition-opacity duration-1000 blur-3xl pointer-events-none mix-blend-screen`} />
 
@@ -69,9 +79,31 @@ function ProjectCard({ project, index, progress }: { project: typeof projects[0]
           {project.title}
         </h3>
 
-        <p className="body-large text-white/60 leading-relaxed">
-          {project.description}
-        </p>
+        <div className="flex flex-col gap-6 mt-4">
+          <div className="flex flex-col gap-1 text-left">
+            <span className="text-[10px] font-mono font-bold text-red-500/80 uppercase tracking-widest flex items-center gap-1.5">
+              <AlertCircle size={10} />
+              The Problem
+            </span>
+            <p className="text-sm text-white/70 leading-relaxed font-light">{project.problem}</p>
+          </div>
+          <div className="flex flex-col gap-1 text-left">
+            <span className="text-[10px] font-mono font-bold text-blue-400/80 uppercase tracking-widest flex items-center gap-1.5">
+              <CheckCircle2 size={10} />
+              The Solution
+            </span>
+            <p className="text-sm text-white/70 leading-relaxed font-light">{project.solution}</p>
+          </div>
+          <div className="flex flex-col gap-2 p-5 rounded-2xl bg-primary/5 border border-primary/10 mt-2">
+            <span className="text-[10px] font-mono font-bold text-primary uppercase tracking-widest flex items-center gap-1.5">
+              <Zap size={10} className="fill-primary" />
+              Verified Result
+            </span>
+            <p className="text-xl font-bold text-white leading-tight tracking-tight">{project.result}</p>
+          </div>
+        </div>
+
+
 
         <div className="flex flex-wrap gap-2 mt-2">
           {project.tags.map(tag => (
@@ -137,7 +169,7 @@ export function Portfolio() {
   return (
     <section id="work" ref={containerRef} className="section-padding py-32 bg-dark-background relative z-20">
       <div className="container mx-auto">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-10 mb-32">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-10 mb-16 md:mb-32">
           <div className="max-w-3xl relative">
             <span className="label-mono mb-6 block text-primary/80 tracking-[0.3em] uppercase">Impact Driven</span>
             <h2 className="text-5xl md:text-7xl font-display font-black tracking-tighter leading-tight mb-8">

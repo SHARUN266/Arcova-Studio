@@ -23,6 +23,7 @@ export function WhatsAppButton() {
     window.open("https://wa.me/918279934295?text=Hello%20Arcova!%20I%20want%20to%20start%20a%20project.", "_blank")
   }
 
+
   return (
     <button
       ref={buttonRef}

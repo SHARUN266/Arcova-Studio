@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { Search, Globe, Zap, Shield, BarChart3, ChevronRight, CheckCircle2, AlertCircle, Loader2, Cpu, Activity, Layout, Lock } from "lucide-react"
+import { Search, Globe, Zap, Shield, BarChart3, ChevronRight, CheckCircle2, AlertCircle, Loader2, Cpu, Activity, Layout, Lock, ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 type AuditState = "INPUT" | "ANALYZING" | "REPORT"
@@ -141,7 +141,8 @@ export function Auditor() {
   }
 
   return (
-    <section id="auditor" className="section-padding relative overflow-hidden bg-dark-elevated border-y border-white/5">
+    <section id="auditor" className="section-padding relative overflow-hidden bg-dark-elevated">
+
       <div className="absolute inset-0 pointer-events-none opacity-20">
         <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, rgba(255,255,255,0.05) 1px, transparent 0)', backgroundSize: '40px 40px' }} />
       </div>
@@ -163,13 +164,18 @@ export function Auditor() {
             className="flex items-center gap-2 px-3 py-1 rounded-full bg-accent/10 border border-accent/20 mb-6"
           >
             <Activity size={14} className="text-accent animate-pulse" />
-            <span className="text-[10px] uppercase font-mono font-bold tracking-[0.2em] text-accent">Deep AI Analysis Engaged</span>
+            <span className="text-[10px] uppercase font-mono font-bold tracking-[0.2em] text-accent">14 Scans Performed by Agra Businesses Today</span>
           </motion.div>
 
+
           <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="h2-section max-w-4xl tracking-tighter">
-            Stop Guessing. <br />
-            <span className="text-accent underline decoration-accent/20 underline-offset-[12px]">Quantify</span> Your Visual Impact.
+            Is Your Website <br />
+            <span className="text-accent underline decoration-accent/20 underline-offset-[12px]">Losing You Money?</span>
           </motion.h2>
+          <p className="body-large opacity-60 max-w-2xl mt-8">
+            Stop guessing. Our AI deep-scans your site to find the exact bottlenecks killing your local Agra sales.
+          </p>
+
         </div>
 
         <div className="max-w-6xl mx-auto">
@@ -277,10 +283,20 @@ export function Auditor() {
                       {report.criticalImprovements.map((tip, i) => (
                         <div key={i} className="flex items-start gap-4 p-5 bg-white/[0.03] rounded-2xl border border-white/5">
                           <span className="w-6 h-6 rounded-full bg-accent/10 text-accent flex items-center justify-center font-mono font-bold text-[9px] flex-shrink-0">0{i + 1}</span>
-                          <p className="text-sm font-light leading-snug text-white/90">{tip}</p>
+                          <div className="flex flex-col gap-1">
+                            <p className="text-sm font-light leading-snug text-white/90">{tip}</p>
+                          </div>
                         </div>
                       ))}
+                      <button
+                        onClick={() => window.open(`https://wa.me/918279934295?text=I%20just%20scanned%20my%20site%20${url}%20and%20got%20a%20score%20of%20${report.score}.%20Can%20you%20help%20fix%20the%20critical%20errors?`, '_blank')}
+                        className="w-full mt-6 py-5 rounded-2xl bg-accent text-black font-black text-sm uppercase tracking-widest flex items-center justify-center gap-3 hover:scale-[1.02] active:scale-95 transition-all shadow-[0_20px_40px_rgba(245,166,35,0.2)]"
+                      >
+                        Fix These Errors on WhatsApp
+                        <ArrowRight size={18} />
+                      </button>
                     </div>
+
                   </div>
 
                   <button onClick={() => setState("INPUT")} className="w-full py-4 text-muted-foreground hover:text-accent font-mono text-[9px] uppercase tracking-[0.3em] font-bold border border-white/5 rounded-2xl hover:border-accent/20 transition-all">

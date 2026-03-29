@@ -55,13 +55,14 @@ export function Hero() {
               initial="hidden"
               animate="visible"
               variants={{
-                visible: { transition: { staggerChildren: 0.05 } }
+                visible: { transition: { staggerChildren: 0.04 } }
               }}
-              className="text-5xl sm:text-6xl lg:text-7xl xl:text-[5rem] leading-[1.1] font-sans font-medium tracking-tight mb-8 w-full flex flex-wrap justify-center lg:justify-start gap-x-[0.25em] gap-y-2 lg:gap-y-4"
+              className="text-4xl sm:text-6xl lg:text-7xl xl:text-[5.5rem] leading-[1.05] font-sans font-medium tracking-tighter mb-8 w-full flex flex-wrap justify-center lg:justify-start gap-x-[0.25em] gap-y-2 lg:gap-y-4"
             >
+
               {[
-                { text: "We" }, { text: "Build" }, { text: "Digital" }, { text: "Experiences", br: true },
-                { text: "That" }, { text: "Dominate.", highlight: true }
+                { text: "Get" }, { text: "More" }, { text: "Leads" }, { text: "&" }, { text: "Sales", br: true },
+                { text: "From" }, { text: "Your" }, { text: "Local" }, { text: "Business.", highlight: true }
               ].map((item, i) => (
                 <span key={i} className="inline-block relative">
                    <motion.span
@@ -86,7 +87,7 @@ export function Hero() {
               transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
               className="text-lg md:text-xl text-white/60 max-w-xl font-light leading-relaxed mb-10"
             >
-              Arcova Studio partners with forward-thinking companies to design, engineer, and scale high-converting websites that perform ruthlessly.
+              We build high-converting websites and automation systems that turn 'just looking' into 'just booked.' No fluff, no tech-speak—just measurable ROI for Agra's service businesses.
             </motion.p>
 
             {/* High-Converting CTA Hierarchy */}
@@ -98,28 +99,44 @@ export function Hero() {
             >
               <button
                 className="w-full sm:w-auto h-14 px-8 rounded-full bg-primary text-white font-sans font-semibold text-lg flex items-center justify-center gap-2 hover:scale-[1.02] active:scale-95 transition-transform duration-300 shadow-[0_0_20px_rgba(255,69,51,0.3)] hover:shadow-[0_0_30px_rgba(255,69,51,0.5)]"
-                onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+                onClick={() => window.open('https://wa.me/918279934295', '_blank')}
               >
-                Book a Call
+                Start WhatsApp Chat
                 <ArrowRight size={18} className="translate-y-[1px]" />
               </button>
               <button
                 className="w-full sm:w-auto h-14 px-8 rounded-full text-white/60 hover:text-white font-sans font-medium text-base flex items-center justify-center transition-colors duration-300 relative group"
-                onClick={() => document.getElementById('work')?.scrollIntoView({ behavior: 'smooth' })}
+                onClick={() => document.getElementById('auditor')?.scrollIntoView({ behavior: 'smooth' })}
               >
-                View Selected Work
+                Scan My Website (Free)
                 {/* Secondary CTA Subdued Underline */}
                 <div className="absolute bottom-3 left-8 right-8 h-[1px] bg-white/20 origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out" />
               </button>
             </motion.div>
+
+            {/* Micro Trust Signal */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1, duration: 1 }}
+              className="mt-6 flex items-center gap-2 text-white/40"
+            >
+              <div className="flex gap-0.5">
+                {[1, 2, 3, 4, 5].map(i => <Star key={i} size={10} className="fill-primary text-primary" />)}
+              </div>
+              <span className="text-[10px] font-mono uppercase tracking-[0.2em] font-bold">4.9/5 Average Rating from 42+ Agra Clients</span>
+            </motion.div>
+
+
 
             {/* Instant Trust Indicators */}
             <motion.div 
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 1, delay: 0.6 }}
-              className="mt-12 flex flex-col sm:flex-row items-center gap-4 sm:gap-6 pt-8 border-t border-white/10 w-full max-w-sm lg:max-w-none"
+              className="mt-8 md:mt-12 flex flex-col sm:flex-row items-center gap-4 sm:gap-6 pt-8 border-t border-white/10 w-full max-w-sm lg:max-w-none"
             >
+
               <div className="flex -space-x-3">
                 {[11, 12, 13, 14].map((id) => (
                   <div key={id} className="w-10 h-10 rounded-full border-2 border-black bg-[#1A1A1A] flex items-center justify-center overflow-hidden">

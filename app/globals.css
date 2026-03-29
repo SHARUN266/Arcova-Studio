@@ -230,8 +230,9 @@
   }
 
   .section-padding {
-    @apply py-32 md:py-40 px-6 md:px-12 lg:px-32;
+    @apply py-16 md:py-40 px-6 md:px-12 lg:px-32;
   }
+
 
   .section-border {
     @apply border-t border-[#1e1c1a];

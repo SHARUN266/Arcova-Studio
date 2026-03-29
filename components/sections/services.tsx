@@ -6,37 +6,28 @@ import { motion, useInView } from "framer-motion"
 const services = [
   {
     id: "01",
-    title: "Premium Website Design",
-    description: "Modern, high-converting designs built to grab attention and establish unshakeable trust in the Agra market.",
-    features: ["Bespoke UI/UX Design", "Conversion Rate Optimization", "Interactive Prototypes", "Responsive Matrix"],
-    price: "Starting from ₹8,000",
-    glow: "radial-gradient(circle at top left, rgba(56, 189, 248, 0.15), transparent 50%)", // Blue top left
+    title: "Conversion-Engine Websites",
+    description: "Stop losing customers to competitors because of a slow, outdated site. We build high-performance sales machines that force local Agra traffic to take action.",
+    features: ["Direct-Response Design", "Speed-Optimized Architecture", "WhatsApp Lead Hooks", "Mobile-First Conversion"],
+    glow: "radial-gradient(circle at top left, rgba(255, 75, 51, 0.15), transparent 50%)",
   },
   {
     id: "02",
-    title: "High-Performance Development",
-    description: "Lightning-fast, scalable frontend coding using Next.js, Framer Motion, and Tailwind CSS. We don't use templates.",
-    features: ["Next.js Architecture", "Advanced Animations", "Headless CMS Integration", "SEO Optimization"],
-    price: "Starting from ₹15,000",
-    glow: "radial-gradient(circle at top right, rgba(255, 75, 51, 0.15), transparent 50%)", // Orange top right
+    title: "Auto-Pilot Lead Capture",
+    description: "40% of local leads are lost due to slow response. Our intelligent systems respond to and nurture your leads 24/7 so you never miss another booking.",
+    features: ["24/7 Automated Response", "CRM Integration", "Instant WhatsApp Alerts", "Booking Workflows"],
+    glow: "radial-gradient(circle at top right, rgba(56, 189, 248, 0.15), transparent 50%)",
   },
   {
     id: "03",
-    title: "E-commerce & Web Apps",
-    description: "Intelligent digital storefronts and web applications engineered for maximum revenue and frictionless user journeys.",
-    features: ["Custom Shopping Carts", "Payment Gateways", "Inventory Sync", "User Dashboards"],
-    price: "Starting from ₹40,000",
-    glow: "radial-gradient(circle at bottom left, rgba(255, 75, 51, 0.15), transparent 50%)", // Orange bottom left
-  },
-  {
-    id: "04",
-    title: "Maintenance & Scale",
-    description: "Ongoing technical partnerships. We monitor performance, handle updates, and introduce new features as you grow.",
-    features: ["24/7 Monitoring", "Security Audits", "Content Updates", "A/B Testing"],
-    price: "Starting from ₹1,500/mo",
-    glow: "radial-gradient(circle at bottom right, rgba(56, 189, 248, 0.15), transparent 50%)", // Blue bottom right
+    title: "Agra-Targeted Ads (ROI Focus)",
+    description: "Stop wasting money on vague 'brand awareness' ads. We run high-performance Meta and Google campaigns that put your offer in front of ready-to-buy customers.",
+    features: ["Local Market Targeting", "Creative Ad Straegy", "Lead Quality Filtering", "Monthly ROI Reports"],
+    glow: "radial-gradient(circle at bottom, rgba(255, 75, 51, 0.15), transparent 50%)",
   },
 ]
+
+
 
 export function Services() {
   const containerRef = useRef(null)
@@ -47,26 +38,27 @@ export function Services() {
       <div className="container mx-auto relative z-10 max-w-6xl" ref={containerRef}>
         
         {/* Section Header */}
-        <div className="text-center mb-20 flex flex-col items-center">
-          <span className="label-mono mb-6 text-primary tracking-[0.3em] uppercase">Capabilities</span>
+        <div className="text-center mb-12 md:mb-20 flex flex-col items-center">
+
+          <span className="label-mono mb-6 text-primary tracking-[0.3em] uppercase">The Growth System</span>
           <h2 className="text-5xl md:text-6xl lg:text-7xl font-sans font-medium tracking-tight leading-tight mb-8">
-            World-class <br />
-            <span className="text-gradient font-italic-serif font-light">Execution.</span>
+            Engineered for <br />
+            <span className="text-gradient font-italic-serif font-light">ROI.</span>
           </h2>
           <p className="body-large opacity-60 max-w-2xl leading-relaxed">
-            We bring top-tier engineering and design to local businesses. Discover how we scale teams and revenue.
+            We don't just "make websites." We build the entire infrastructure your local business needs to dominate the Agra market.
           </p>
         </div>
 
         {/* Bento Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full auto-rows-fr">
           {services.map((service, index) => (
             <motion.div
               key={service.id}
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
               transition={{ duration: 0.8, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
-              className="relative group bg-[#0A0A0A] rounded-[2rem] border border-white/5 overflow-hidden flex flex-col items-center text-center p-8 md:p-12 lg:p-16 min-h-[350px] md:min-h-[400px] h-auto justify-center transition-all duration-500 hover:border-white/10"
+              className={`relative group bg-[#0A0A0A] rounded-[2rem] border border-white/5 overflow-hidden flex flex-col items-center text-center p-8 md:p-12 lg:p-16 h-full justify-center transition-all duration-500 hover:border-white/10 ${index === 2 ? 'md:col-span-2 max-w-4xl mx-auto w-full' : ''}`}
             >
               {/* Ambient Edge Glow */}
               <div 
@@ -92,14 +84,12 @@ export function Services() {
                       </span>
                     ))}
                   </div>
-                  <span className="text-primary font-mono text-sm tracking-widest uppercase font-bold">
-                    {service.price}
-                  </span>
                 </div>
               </div>
             </motion.div>
           ))}
         </div>
+
         
       </div>
     </section>

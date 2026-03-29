@@ -8,17 +8,47 @@ export function Contact() {
   const [status, setStatus] = useState<"idle" | "loading" | "success">("idle")
   const [formData, setFormData] = useState({ name: "", phone: "" })
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     if (!formData.name || !formData.phone) return
+
+    // Simple 10-digit validation for Indian WhatsApp numbers
+    const phoneRegex = /^[6-9]\d{9}$/;
+    if (!phoneRegex.test(formData.phone)) {
+      alert("Please enter a valid 10-digit WhatsApp number (starting with 6-9).");
+      return;
+    }
+
     setStatus("loading")
-    // Simulate API call for friction-less UI feel locally
-    setTimeout(() => {
+    
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: formData.name,
+          whatsapp: formData.phone,
+          message: "Interested in a Free Consultation via Website Form",
+          projectType: "Web Development/Consultation",
+          budget: "To be discussed",
+          preferWhatsapp: true
+        })
+      })
+
+
+      if (response.ok) {
         setStatus("success")
-        // Optional: Trigger your actual API here
-        // fetch('/api/contact', { ... })
-    }, 1500)
+      } else {
+        const errorData = await response.json()
+        throw new Error(errorData.error || "Failed to send lead")
+      }
+    } catch (error: any) {
+      console.error("Submission error:", error)
+      setStatus("idle")
+      alert(error.message || "Failed to submit. Please try again or WhatsApp us directly.")
+    }
   }
+
 
   return (
     <section id="contact" className="section-padding py-32 relative overflow-hidden bg-background">

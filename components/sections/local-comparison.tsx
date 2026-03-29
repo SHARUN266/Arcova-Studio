@@ -4,12 +4,13 @@ import { motion } from "framer-motion"
 import { Check, X } from "lucide-react"
 
 const comparisonData = [
-  { feature: "Face-to-face Strategic Meetings", arcova: true, others: false },
-  { feature: "Local Market & Audience Knowledge", arcova: true, others: "Limited" },
-  { feature: "Bespoke Premium Design", arcova: true, others: "Templates" },
+  { feature: "Primary Website Goal", arcova: "Leads & Sales", others: "Just Looks Pretty" },
+  { feature: "Lead Capture & Automation", arcova: "Fully Automated", others: "Manual / None" },
+  { feature: "Agra Market Expertise", arcova: "Deep Rooted", others: "Generic" },
+  { feature: "Advertising Approach", arcova: "ROI Focused", others: "Vague Impressions" },
   { feature: "Response Time", arcova: "< 2 Hours", others: "24-48 Hours" },
-  { feature: "Dedicated Ongoing Support", arcova: true, others: "Extra Cost" },
 ]
+
 
 export function LocalComparison() {
   return (
@@ -20,10 +21,11 @@ export function LocalComparison() {
         <div className="text-center mb-24">
           <span className="label-mono mb-4 block text-primary/80 tracking-[0.3em] uppercase">The Arcova Standard</span>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-black text-white">
-            Why We Beat <br className="md:hidden" />
-            <span className="text-gradient font-italic-serif font-light">Remote Agencies.</span>
+            The Result-First <br className="md:hidden" />
+            <span className="text-gradient font-italic-serif font-light">Alternative.</span>
           </h2>
         </div>
+
 
         <div className="max-w-4xl mx-auto flex flex-col gap-4">
           {/* Header */}
@@ -52,22 +54,15 @@ export function LocalComparison() {
                 </div>
                 
                 <div className="col-span-3 md:col-span-3 flex justify-center items-center">
-                  {row.arcova === true ? (
-                    <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-black transition-all duration-300 group-hover:scale-110 shadow-[0_0_15px_rgba(255,69,51,0)] group-hover:shadow-[0_0_20px_rgba(255,69,51,0.4)]">
-                      <Check size={20} strokeWidth={3} />
-                    </div>
-                  ) : (
-                    <div className="text-center">
-                      <span className="font-black font-mono text-sm md:text-base text-primary whitespace-nowrap group-hover:text-white transition-colors duration-300 drop-shadow-[0_0_10px_rgba(255,69,51,0)] group-hover:drop-shadow-[0_0_15px_rgba(255,69,51,0.8)]">
-                        {row.arcova}
-                      </span>
-                    </div>
-                  )}
+                  <span className="font-black font-mono text-sm md:text-base text-primary whitespace-nowrap group-hover:text-white transition-colors duration-300 drop-shadow-[0_0_10px_rgba(255,69,51,0)] group-hover:drop-shadow-[0_0_15px_rgba(255,69,51,0.8)]">
+                    {row.arcova}
+                  </span>
                 </div>
 
                 <div className="col-span-3 md:col-span-3 flex justify-center items-center opacity-40 group-hover:opacity-20 transition-opacity duration-300 grayscale">
-                  {row.others === false ? <X size={20} /> : <span className="text-xs md:text-sm font-bold font-mono text-center">{row.others}</span>}
+                  <span className="text-xs md:text-sm font-bold font-mono text-center">{row.others}</span>
                 </div>
+
               </div>
             </motion.div>
           ))}

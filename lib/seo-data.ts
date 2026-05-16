@@ -1,10 +1,10 @@
 // ===========================================================================
-// Centralized SEO Data — Arcova Studio
+// Centralized SEO Data — Nexora Studio
 // Single source of truth for all SEO-related content across the site.
 // ===========================================================================
 
 export const SITE_CONFIG = {
-  name: "Arcova Studio",
+  name: "Nexora Studio",
   url: "https://arcova-studio.vercel.app",
   tagline: "We build what scales.",
   phone: "+91-8279934295", // TODO: Replace with actual phone number
@@ -99,7 +99,7 @@ export const CITIES: CityData[] = [
   {
     slug: "agra",
     name: "Agra",
-    metaTitle: "Web Design & Development in Agra | Arcova Studio",
+    metaTitle: "Web Design & Development in Agra | Nexora Studio",
     metaDescription:
       "Premium websites for businesses in Agra. From heritage tourism to local retail — we build fast, modern websites that help Agra businesses grow online.",
     heroTagline: "Building Digital Presence for Agra's Businesses",
@@ -134,7 +134,7 @@ export const CITIES: CityData[] = [
   {
     slug: "mathura",
     name: "Mathura",
-    metaTitle: "Web Design & Development in Mathura | Arcova Studio",
+    metaTitle: "Web Design & Development in Mathura | Nexora Studio",
     metaDescription:
       "Professional website design for Mathura businesses. We help temples, dairies, hospitality, and retail brands establish a strong online presence.",
     heroTagline: "Websites That Serve Mathura's Unique Market",
@@ -169,7 +169,7 @@ export const CITIES: CityData[] = [
   {
     slug: "firozabad",
     name: "Firozabad",
-    metaTitle: "Web Design & Development in Firozabad | Arcova Studio",
+    metaTitle: "Web Design & Development in Firozabad | Nexora Studio",
     metaDescription:
       "Custom websites for Firozabad's glass industry and local businesses. We build online storefronts that help Firozabad manufacturers reach global buyers.",
     heroTagline: "Digital Solutions for Firozabad's Glass Capital",
@@ -204,7 +204,7 @@ export const CITIES: CityData[] = [
   {
     slug: "vrindavan",
     name: "Vrindavan",
-    metaTitle: "Web Design & Development in Vrindavan | Arcova Studio",
+    metaTitle: "Web Design & Development in Vrindavan | Nexora Studio",
     metaDescription:
       "Beautiful websites for Vrindavan's temples, ashrams, and hospitality businesses. We create serene digital experiences that match Vrindavan's spiritual essence.",
     heroTagline: "Serene Digital Experiences for Vrindavan",
@@ -239,7 +239,7 @@ export const CITIES: CityData[] = [
   {
     slug: "hathras",
     name: "Hathras",
-    metaTitle: "Web Design & Development in Hathras | Arcova Studio",
+    metaTitle: "Web Design & Development in Hathras | Nexora Studio",
     metaDescription:
       "Affordable, professional websites for Hathras businesses. We help local shops, schools, clinics, and startups launch their online presence.",
     heroTagline: "Bringing Hathras Businesses Online",

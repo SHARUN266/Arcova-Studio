@@ -1,7 +1,7 @@
 import { sql, initBlogTable } from "@/lib/db";
 
 // ===========================================================================
-// Blog Data — Arcova Studio
+// Blog Data — Nexora Studio
 // Fetches from Vercel Postgres + static fallback posts.
 // ===========================================================================
 
@@ -53,7 +53,7 @@ The question isn't whether Agra businesses need websites. The question is whethe
 
 ---
 
-*Ready to bring your Agra business online? [Contact Arcova Studio](/contact) for a free consultation.*`,
+*Ready to bring your Agra business online? [Contact Nexora Studio](/contact) for a free consultation.*`,
   },
   
  
@@ -91,7 +91,7 @@ A **0.1-second improvement in load time** led to **8.4% increase** in conversion
 
 ---
 
-*Want to know how fast your website really is? [Get a free performance audit from Arcova Studio](/contact).*`,
+*Want to know how fast your website really is? [Get a free performance audit from Nexora Studio](/contact).*`,
   },
 ];
 

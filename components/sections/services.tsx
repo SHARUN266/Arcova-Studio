@@ -1,95 +1,170 @@
 "use client"
 
-import { useRef } from "react"
-import { motion, useInView } from "framer-motion"
+import { useRef, useState } from "react"
+import { motion, useMotionValue, useTransform, useSpring } from "framer-motion"
+import { Layout, Cpu, BarChart3, ArrowRight } from "lucide-react"
+import { SplitText, staggerContainer, staggerItem } from "@/lib/motion"
 
 const services = [
   {
     id: "01",
-    title: "Conversion-Engine Websites",
-    description: "Stop losing customers to competitors because of a slow, outdated site. We build high-performance sales machines that force local Agra traffic to take action.",
-    features: ["Direct-Response Design", "Speed-Optimized Architecture", "WhatsApp Lead Hooks", "Mobile-First Conversion"],
-    glow: "radial-gradient(circle at top left, rgba(255, 75, 51, 0.15), transparent 50%)",
+    title: "Premium Websites",
+    description: "Cinematic, high-performance web experiences that elevate your brand and drive measurable conversions.",
+    icon: Layout,
   },
   {
     id: "02",
-    title: "Auto-Pilot Lead Capture",
-    description: "40% of local leads are lost due to slow response. Our intelligent systems respond to and nurture your leads 24/7 so you never miss another booking.",
-    features: ["24/7 Automated Response", "CRM Integration", "Instant WhatsApp Alerts", "Booking Workflows"],
-    glow: "radial-gradient(circle at top right, rgba(56, 189, 248, 0.15), transparent 50%)",
+    title: "AI Automation",
+    description: "Intelligent autonomous systems that capture, nurture, and convert leads while you sleep.",
+    icon: Cpu,
   },
   {
     id: "03",
-    title: "Agra-Targeted Ads (ROI Focus)",
-    description: "Stop wasting money on vague 'brand awareness' ads. We run high-performance Meta and Google campaigns that put your offer in front of ready-to-buy customers.",
-    features: ["Local Market Targeting", "Creative Ad Straegy", "Lead Quality Filtering", "Monthly ROI Reports"],
-    glow: "radial-gradient(circle at bottom, rgba(255, 75, 51, 0.15), transparent 50%)",
+    title: "Analytics Dashboards",
+    description: "Real-time data visualization that turns complex metrics into clear, actionable growth insights.",
+    icon: BarChart3,
   },
 ]
 
+// 3D Tilt Card Component with enhanced motion
+function ServiceCard({ service, index }: { service: typeof services[0], index: number }) {
+  const ref = useRef<HTMLDivElement>(null)
+  const [isHovered, setIsHovered] = useState(false)
+  
+  const x = useMotionValue(0)
+  const y = useMotionValue(0)
 
+  const mouseXSpring = useSpring(x, { stiffness: 150, damping: 15 })
+  const mouseYSpring = useSpring(y, { stiffness: 150, damping: 15 })
 
-export function Services() {
-  const containerRef = useRef(null)
-  const isInView = useInView(containerRef, { once: true, margin: "-10%" })
+  const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["7deg", "-7deg"])
+  const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-7deg", "7deg"])
+  
+  // Glow follows mouse position
+  const glowX = useTransform(mouseXSpring, [-0.5, 0.5], ["20%", "80%"])
+  const glowY = useTransform(mouseYSpring, [-0.5, 0.5], ["20%", "80%"])
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!ref.current) return
+    const rect = ref.current.getBoundingClientRect()
+    const width = rect.width
+    const height = rect.height
+    const mouseX = e.clientX - rect.left
+    const mouseY = e.clientY - rect.top
+    const xPct = mouseX / width - 0.5
+    const yPct = mouseY / height - 0.5
+    x.set(xPct)
+    y.set(yPct)
+  }
+
+  const handleMouseLeave = () => {
+    setIsHovered(false)
+    x.set(0)
+    y.set(0)
+  }
 
   return (
-    <section id="services" className="section-padding py-40 relative flex items-center justify-center bg-[#000000] overflow-hidden">
-      <div className="container mx-auto relative z-10 max-w-6xl" ref={containerRef}>
-        
-        {/* Section Header */}
-        <div className="text-center mb-12 md:mb-20 flex flex-col items-center">
+    <motion.div
+      variants={staggerItem}
+      className="perspective-1000"
+    >
+      <motion.div
+        ref={ref}
+        onMouseMove={handleMouseMove}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={handleMouseLeave}
+        style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
+        className="relative group h-full bg-[#0C0C0F] border border-white/5 rounded-3xl p-8 md:p-10 flex flex-col justify-between overflow-hidden transition-colors duration-500 hover:border-primary/20 aspect-[4/5] sm:aspect-auto sm:min-h-[400px]"
+      >
+        {/* Mouse-following glow */}
+        <motion.div 
+          className="absolute inset-0 z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none mix-blend-screen"
+          style={{ 
+            background: useTransform(
+              [glowX, glowY],
+              ([gx, gy]) => `radial-gradient(circle at ${gx} ${gy}, rgba(139, 92, 246, 0.2), transparent 60%)`
+            )
+          }}
+        />
 
-          <span className="label-mono mb-6 text-primary tracking-[0.3em] uppercase">The Growth System</span>
-          <h2 className="text-5xl md:text-6xl lg:text-7xl font-sans font-medium tracking-tight leading-tight mb-8">
-            Engineered for <br />
-            <span className="text-gradient font-italic-serif font-light">ROI.</span>
-          </h2>
-          <p className="body-large opacity-60 max-w-2xl leading-relaxed">
-            We don't just "make websites." We build the entire infrastructure your local business needs to dominate the Agra market.
-          </p>
+        {/* Huge faded background number */}
+        <div 
+          className="absolute -top-6 -right-4 text-[8rem] font-black text-white/[0.02] group-hover:text-primary/[0.05] transition-colors duration-500 z-0 select-none pointer-events-none font-display"
+          style={{ transform: "translateZ(-50px)" }}
+        >
+          {service.id}
         </div>
 
-        {/* Bento Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full auto-rows-fr">
-          {services.map((service, index) => (
-            <motion.div
-              key={service.id}
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-              transition={{ duration: 0.8, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
-              className={`relative group bg-[#0A0A0A] rounded-[2rem] border border-white/5 overflow-hidden flex flex-col items-center text-center p-8 md:p-12 lg:p-16 h-full justify-center transition-all duration-500 hover:border-white/10 ${index === 2 ? 'md:col-span-2 max-w-4xl mx-auto w-full' : ''}`}
+        {/* Content (pushed forward in 3D space) */}
+        <div className="relative z-10 flex flex-col h-full" style={{ transform: "translateZ(30px)" }}>
+          <div className="mb-auto">
+            <motion.div 
+              className="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-8 group-hover:bg-primary/10 group-hover:border-primary/30 transition-all duration-500 glow-purple"
+              whileHover={{ scale: 1.1, rotate: 5 }}
+              transition={{ type: "spring", stiffness: 300, damping: 20 }}
             >
-              {/* Ambient Edge Glow */}
-              <div 
-                className="absolute inset-0 z-0 opacity-60 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none mix-blend-screen"
-                style={{ background: service.glow }}
-              />
-
-              {/* Card Content */}
-              <div className="relative z-10 flex flex-col items-center w-full">
-                <h3 className="text-2xl sm:text-3xl md:text-4xl font-sans font-medium tracking-tight text-white mb-4 md:mb-6">
-                  {service.title}
-                </h3>
-                <p className="text-white/60 text-base sm:text-lg leading-relaxed max-w-sm md:max-w-md mx-auto mb-6 md:mb-8 font-light">
-                  {service.description}
-                </p>
-
-                {/* Hidden Features & Price (Hover Reveal) to maintain minimal look by default */}
-                <div className="w-full h-0 opacity-0 group-hover:h-auto group-hover:opacity-100 transition-all duration-500 overflow-hidden flex flex-col items-center">
-                  <div className="flex flex-wrap justify-center gap-2 mb-6 pointer-events-none">
-                    {service.features.map(f => (
-                      <span key={f} className="text-[10px] uppercase tracking-widest px-3 py-1.5 rounded-full border border-white/10 bg-white/5 text-white/70 font-mono">
-                        {f}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </div>
+              <service.icon className="w-6 h-6 text-zinc-400 group-hover:text-primary transition-colors" />
             </motion.div>
-          ))}
+            <h3 className="text-2xl font-bold text-white mb-4 tracking-tight">
+              {service.title}
+            </h3>
+            <p className="text-zinc-400 leading-relaxed font-light">
+              {service.description}
+            </p>
+          </div>
+
+          <div className="mt-8 pt-6 border-t border-white/5 flex items-center justify-between opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <span className="text-sm font-semibold text-primary uppercase tracking-widest">Learn more</span>
+            <motion.div
+              animate={isHovered ? { x: 4 } : { x: 0 }}
+              transition={{ type: "spring", stiffness: 300, damping: 20 }}
+            >
+              <ArrowRight className="w-5 h-5 text-primary" />
+            </motion.div>
+          </div>
+        </div>
+      </motion.div>
+    </motion.div>
+  )
+}
+
+export function Services() {
+  return (
+    <section id="services" className="section-cinematic bg-[#09090B] relative">
+      <div className="container mx-auto max-w-7xl">
+        
+        {/* Section Header — centered for balance */}
+        <div className="flex flex-col items-center text-center mb-16 md:mb-24">
+          <motion.span 
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="label-mono text-primary mb-4 md:mb-6"
+          >
+            Our Capabilities
+          </motion.span>
+          <h2 className="text-white max-w-4xl">
+            <SplitText>Digital craftsmanship</SplitText>
+            <br />
+            <span className="text-zinc-500">
+              <SplitText>engineered for scale.</SplitText>
+            </span>
+          </h2>
         </div>
 
+        {/* 3D Cards Grid — improved trigger margin */}
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-5%" }}
+          variants={staggerContainer}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 auto-rows-fr"
+        >
+          {services.map((service, index) => (
+            <ServiceCard key={service.id} service={service} index={index} />
+          ))}
+        </motion.div>
         
       </div>
     </section>

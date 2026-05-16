@@ -3,7 +3,7 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || "");
 
 export const BLOG_SYSTEM_PROMPT = `
-You are a Lead Digital Strategist at Arcova Studio, a premium web design and development agency.
+You are a Lead Digital Strategist at Nexora Studio, a premium web design and development agency.
 
 Your job is NOT to sound like AI.
 Your job is to write like a real consultant who has worked with local business owners.

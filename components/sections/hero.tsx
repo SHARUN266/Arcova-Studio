@@ -2,232 +2,127 @@
 
 import { useRef } from "react"
 import { motion, useScroll, useTransform } from "framer-motion"
-import { ArrowRight, Star, TrendingUp, CheckCircle2 } from "lucide-react"
+import { ArrowRight, Star } from "lucide-react"
+import { ThreeOrb } from "@/components/ui/three-orb"
+import { MagneticButton } from "@/components/ui/magnetic-button"
+import { InitialsAvatar } from "@/components/ui/initials-avatar"
+import { getFeaturedClients } from "@/data/clients"
 
 export function Hero() {
   const containerRef = useRef<HTMLDivElement>(null)
+  const featuredClients = getFeaturedClients().slice(0, 4)
   
-  // Minimal scroll parallax for the right column to add depth (hardware accelerated)
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end start"]
   })
   
-  const yElement = useTransform(scrollYProgress, [0, 1], [0, 80])
-  const opacityElement = useTransform(scrollYProgress, [0, 0.8], [1, 0])
+  const yBadge = useTransform(scrollYProgress, [0, 1], [0, 60])
+  const yHeadline = useTransform(scrollYProgress, [0, 1], [0, 100])
+  const ySub = useTransform(scrollYProgress, [0, 1], [0, 130])
+  const yCta = useTransform(scrollYProgress, [0, 1], [0, 160])
+  const yTrust = useTransform(scrollYProgress, [0, 1], [0, 180])
+  
+  const scaleContent = useTransform(scrollYProgress, [0, 0.5], [1, 0.88])
+  const rotateX = useTransform(scrollYProgress, [0, 0.5], [0, 6])
+  const opacityContent = useTransform(scrollYProgress, [0, 0.7], [1, 0])
+  const orbOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0])
 
   return (
-    <section ref={containerRef} className="relative min-h-[100vh] flex items-center pt-32 pb-16 lg:pt-40 lg:pb-24 overflow-hidden bg-[#000000]">
+    <section ref={containerRef} className="relative min-h-screen flex items-center justify-center pt-24 pb-16 overflow-hidden bg-[#09090B]">
       
-      {/* 
-        Background: Static Conic Glow. 
-        Performance-friendly approach: No constant pulsing, purely a static heavily blurred element 
-        using the exact colors requested, pushed heavily to the right behind the UI mockups. 
-      */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden flex justify-center lg:justify-end items-end lg:items-center opacity-70 mix-blend-screen z-0">
-        <div 
-          className="w-[140vw] lg:w-[80vw] max-w-[1200px] aspect-square lg:aspect-[2/1] rounded-full blur-[100px] sm:blur-[140px] translate-y-[30%] lg:translate-y-0 lg:translate-x-[20%]"
-          style={{
-            background: "conic-gradient(red 0deg,#ff001a 54.8916deg,#00a6ff 106.699deg,#4797ff 162deg,#04f 252deg,#ff8000 306deg,red 360deg)"
-          }}
-        />
-      </div>
+      <div className="absolute top-[-10%] left-[-15%] w-[600px] h-[600px] bg-primary/10 rounded-full blur-[150px] pointer-events-none ambient-blob" />
+      <div className="absolute bottom-[-10%] right-[-10%] w-[500px] h-[500px] bg-accent/8 rounded-full blur-[130px] pointer-events-none ambient-blob-slow" />
+      
+      <motion.div style={{ opacity: orbOpacity }} className="absolute inset-0 z-0">
+        <ThreeOrb />
+      </motion.div>
 
-      <div className="container mx-auto px-6 md:px-12 lg:px-24 relative z-10 w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-8 items-center">
-          
-          {/* Left Column: Copy & Trust & CTAs */}
-          <div className="col-span-1 lg:col-span-7 flex flex-col items-center lg:items-start text-center lg:text-left">
-            
-            {/* Minimal Label */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
-              className="inline-flex items-center gap-2 px-3 py-1.5 mb-6 rounded-full bg-white/[0.05] border border-white/10"
-            >
-              <span className="w-2 h-2 rounded-full bg-primary shadow-[0_0_8px_var(--color-primary)]" />
-              <span className="text-xs font-mono tracking-widest text-white/80 uppercase">Premium Digital Agency</span>
-            </motion.div>
+      <div className="absolute inset-0 bg-[#09090B]/60 z-[1] pointer-events-none" />
 
-            {/* Headline with structured 'Smoke' reveal */}
-            <motion.h1
-              initial="hidden"
-              animate="visible"
-              variants={{
-                visible: { transition: { staggerChildren: 0.04 } }
-              }}
-              className="text-4xl sm:text-6xl lg:text-7xl xl:text-[5.5rem] leading-[1.05] font-sans font-medium tracking-tighter mb-8 w-full flex flex-wrap justify-center lg:justify-start gap-x-[0.25em] gap-y-2 lg:gap-y-4"
-            >
+      <motion.div 
+        style={{ scale: scaleContent, rotateX, opacity: opacityContent, transformPerspective: 1200 }}
+        className="container mx-auto px-6 relative z-10 w-full max-w-5xl flex flex-col items-center text-center mt-10 md:mt-20 will-change-transform"
+      >
+        <motion.div
+          style={{ y: yBadge }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          className="inline-flex items-center gap-2 px-4 py-2 mb-8 md:mb-12 rounded-full border border-white/10 bg-white/5 backdrop-blur-md"
+        >
+          <span className="w-2 h-2 rounded-full bg-primary shadow-[0_0_8px_rgba(139,92,246,0.8)] animate-pulse" />
+          <span className="text-xs font-mono tracking-widest text-zinc-300 uppercase">Premium Digital Agency</span>
+        </motion.div>
 
-              {[
-                { text: "Get" }, { text: "More" }, { text: "Leads" }, { text: "&" }, { text: "Sales", br: true },
-                { text: "From" }, { text: "Your" }, { text: "Local" }, { text: "Business.", highlight: true }
-              ].map((item, i) => (
-                <span key={i} className="inline-block relative">
-                   <motion.span
-                     variants={{
-                       hidden: { opacity: 0, filter: "blur(12px)", y: 20 },
-                       visible: { opacity: 1, filter: "blur(0px)", y: 0 }
-                     }}
-                     transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                     className={`inline-block ${item.highlight ? "font-serif italic text-primary font-light tracking-normal" : "text-white"}`}
-                   >
-                     {item.text}
-                   </motion.span>
-                   {item.br && <div className="w-full hidden lg:block" />}
-                </span>
+        <motion.h1 style={{ y: yHeadline }} className="display-huge text-white mb-6 md:mb-8 flex flex-col gap-2">
+          <motion.span initial={{ opacity: 0, y: 40, filter: "blur(12px)" }} animate={{ opacity: 1, y: 0, filter: "blur(0px)" }} transition={{ duration: 1.2, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}>
+            We Build Digital
+          </motion.span>
+          <motion.span initial={{ opacity: 0, y: 40, filter: "blur(12px)" }} animate={{ opacity: 1, y: 0, filter: "blur(0px)" }} transition={{ duration: 1.2, delay: 0.35, ease: [0.16, 1, 0.3, 1] }} className="text-zinc-500">
+            Experiences That
+          </motion.span>
+          <motion.span initial={{ opacity: 0, y: 40, filter: "blur(12px)", scale: 0.9 }} animate={{ opacity: 1, y: 0, filter: "blur(0px)", scale: 1 }} transition={{ duration: 1.4, delay: 0.55, ease: [0.16, 1, 0.3, 1] }} className="font-italic-serif font-light text-primary tracking-normal">
+            Convert.
+          </motion.span>
+        </motion.h1>
+
+        <motion.p style={{ y: ySub }} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.8, ease: [0.16, 1, 0.3, 1] }} className="text-lg md:text-xl text-zinc-400 max-w-2xl font-light leading-relaxed mb-12">
+          Cinematic 3D websites, AI automation, and premium software tailored for ambitious brands ready to scale.
+        </motion.p>
+
+        <motion.div style={{ y: yCta }} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 1.0, ease: [0.16, 1, 0.3, 1] }} className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 w-full sm:w-auto">
+          <MagneticButton strength={0.2}>
+            <button className="w-full sm:w-auto btn-primary flex items-center justify-center gap-2 group" onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}>
+              Start a Project
+              <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+            </button>
+          </MagneticButton>
+          <MagneticButton strength={0.15}>
+            <button className="w-full sm:w-auto h-14 px-8 rounded-full text-zinc-400 hover:text-white font-medium flex items-center justify-center transition-colors relative group" onClick={() => document.getElementById('work')?.scrollIntoView({ behavior: 'smooth' })}>
+              View Our Work
+              <div className="absolute bottom-3 left-8 right-8 h-[1px] bg-white/20 origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out" />
+            </button>
+          </MagneticButton>
+        </motion.div>
+
+        {/* Trust Indicators — using real data from clients.ts */}
+        <motion.div 
+          style={{ y: yTrust }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 1.3 }}
+          className="mt-16 md:mt-24 pt-8 border-t border-white/5 w-full flex flex-col md:flex-row items-center justify-center gap-6 md:gap-12"
+        >
+          <div className="flex items-center gap-4">
+            <div className="flex -space-x-2">
+              {featuredClients.map((client) => (
+                <InitialsAvatar
+                  key={client.name}
+                  name={client.name}
+                  src={client.avatar || undefined}
+                  size="sm"
+                  className="border-2 border-[#09090B]"
+                />
               ))}
-            </motion.h1>
-
-            {/* Benefit-Driven Subheading */}
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-              className="text-lg md:text-xl text-white/60 max-w-xl font-light leading-relaxed mb-10"
-            >
-              We build high-converting websites and automation systems that turn 'just looking' into 'just booked.' No fluff, no tech-speak—just measurable ROI for Agra's service businesses.
-            </motion.p>
-
-            {/* High-Converting CTA Hierarchy */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-              className="w-full flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 sm:gap-6"
-            >
-              <button
-                className="w-full sm:w-auto h-14 px-8 rounded-full bg-primary text-white font-sans font-semibold text-lg flex items-center justify-center gap-2 hover:scale-[1.02] active:scale-95 transition-transform duration-300 shadow-[0_0_20px_rgba(255,69,51,0.3)] hover:shadow-[0_0_30px_rgba(255,69,51,0.5)]"
-                onClick={() => window.open('https://wa.me/918279934295', '_blank')}
-              >
-                Start WhatsApp Chat
-                <ArrowRight size={18} className="translate-y-[1px]" />
-              </button>
-              <button
-                className="w-full sm:w-auto h-14 px-8 rounded-full text-white/60 hover:text-white font-sans font-medium text-base flex items-center justify-center transition-colors duration-300 relative group"
-                onClick={() => document.getElementById('auditor')?.scrollIntoView({ behavior: 'smooth' })}
-              >
-                Scan My Website (Free)
-                {/* Secondary CTA Subdued Underline */}
-                <div className="absolute bottom-3 left-8 right-8 h-[1px] bg-white/20 origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out" />
-              </button>
-            </motion.div>
-
-            {/* Micro Trust Signal */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 1, duration: 1 }}
-              className="mt-6 flex items-center gap-2 text-white/40"
-            >
-              <div className="flex gap-0.5">
-                {[1, 2, 3, 4, 5].map(i => <Star key={i} size={10} className="fill-primary text-primary" />)}
-              </div>
-              <span className="text-[10px] font-mono uppercase tracking-[0.2em] font-bold">4.9/5 Average Rating from 42+ Agra Clients</span>
-            </motion.div>
-
-
-
-            {/* Instant Trust Indicators */}
-            <motion.div 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 1, delay: 0.6 }}
-              className="mt-8 md:mt-12 flex flex-col sm:flex-row items-center gap-4 sm:gap-6 pt-8 border-t border-white/10 w-full max-w-sm lg:max-w-none"
-            >
-
-              <div className="flex -space-x-3">
-                {[11, 12, 13, 14].map((id) => (
-                  <div key={id} className="w-10 h-10 rounded-full border-2 border-black bg-[#1A1A1A] flex items-center justify-center overflow-hidden">
-                    {/* Using Pravatar for sleek generic user faces as placeholder */}
-                    <img src={`https://i.pravatar.cc/100?img=${id}`} alt={`Client ${id}`} className="w-full h-full object-cover opacity-90 grayscale" />
-                  </div>
+            </div>
+            <div className="flex flex-col items-start gap-1">
+              <div className="flex items-center gap-1">
+                {[1, 2, 3, 4, 5].map((i) => (
+                  <Star key={i} size={14} className="fill-accent text-accent" />
                 ))}
               </div>
-              <div className="flex flex-col items-center sm:items-start gap-1">
-                <div className="flex items-center gap-1">
-                  {[1, 2, 3, 4, 5].map((i) => (
-                    <Star key={i} size={14} className="fill-primary text-primary" />
-                  ))}
-                </div>
-                <span className="text-sm font-sans text-white/50">Trusted by 40+ ambitious brands</span>
-              </div>
-            </motion.div>
-
+              <span className="text-xs font-mono tracking-widest text-zinc-500 uppercase">Trusted by 40+ Brands</span>
+            </div>
           </div>
+        </motion.div>
+      </motion.div>
 
-          {/* Right Column: HTML/CSS Based UI Mockups (Performance Friendly 3D) */}
-          <motion.div 
-            style={{ y: yElement, opacity: opacityElement }}
-            className="col-span-1 lg:col-span-5 relative w-full aspect-[4/3] sm:aspect-video lg:aspect-square mt-4 lg:mt-0 perspective-[2000px]"
-          >
-            {/* Top UI Mockup: Conversion Chart */}
-            <motion.div 
-              animate={{ y: [-6, 6, -6] }} 
-              transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
-              className="absolute top-[10%] right-[5%] sm:right-[15%] lg:right-[5%] w-[85%] sm:w-[70%] lg:w-[85%] bg-[#0A0A0A]/80 backdrop-blur-xl border border-white/10 rounded-3xl p-5 sm:p-6 shadow-2xl z-10 transform lg:rotate-y-[-10deg] rotate-0"
-            >
-              <div className="flex items-center justify-between mb-6">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center border border-primary/20">
-                    <TrendingUp size={20} className="text-primary" />
-                  </div>
-                  <div>
-                    <h4 className="text-white font-medium text-sm">Conversion Rate</h4>
-                    <p className="text-white/40 text-xs">Past 30 Days</p>
-                  </div>
-                </div>
-                <span className="text-primary font-mono text-sm font-bold bg-primary/10 px-2 py-1 rounded-md">+24.8%</span>
-              </div>
-              {/* Semantic CSS Bar Chart */}
-              <div className="w-full h-24 flex items-end justify-between gap-1.5 sm:gap-2 pb-2">
-                {[40, 70, 45, 90, 65, 100].map((h, i) => (
-                  <motion.div 
-                    key={i} 
-                    initial={{ height: 0 }}
-                    animate={{ height: `${h}%` }}
-                    transition={{ duration: 1.2, delay: 0.5 + (i * 0.1), ease: "easeOut" }}
-                    className="w-full bg-gradient-to-t from-primary/30 to-primary rounded-sm relative group cursor-pointer"
-                  >
-                    <div className="absolute -top-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity bg-white text-black text-[10px] font-bold py-1 px-2 rounded">
-                      {h}%
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
-
-            {/* Bottom UI Mockup: Task Completion */}
-            <motion.div 
-              animate={{ y: [6, -6, 6] }} 
-              transition={{ repeat: Infinity, duration: 7, ease: "easeInOut" }}
-              className="absolute bottom-[10%] left-[5%] sm:left-[15%] lg:left-[0%] w-[80%] sm:w-[65%] lg:w-[80%] bg-[#050505]/90 backdrop-blur-xl border border-white/5 rounded-3xl p-5 sm:p-6 shadow-2xl z-20 transform lg:-rotate-y-[15deg] rotate-0"
-            >
-              <div className="flex flex-col gap-4">
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-full bg-[#1A1A1A] border border-primary/30 flex items-center justify-center shadow-[0_0_15px_rgba(255,69,51,0.2)]">
-                    <CheckCircle2 size={24} className="text-primary" />
-                  </div>
-                  <div>
-                    <h4 className="text-white font-medium text-sm">Arcova Studio Protocol</h4>
-                    <p className="text-white/40 text-xs">Project Deployed Live</p>
-                  </div>
-                </div>
-                <div className="w-full h-1.5 bg-white/5 rounded-full overflow-hidden mt-2">
-                  <motion.div 
-                    initial={{ width: 0 }}
-                    animate={{ width: "100%" }}
-                    transition={{ duration: 1.5, delay: 1, ease: "easeInOut" }}
-                    className="h-full bg-primary rounded-full relative"
-                  />
-                </div>
-              </div>
-            </motion.div>
-          </motion.div>
-
+      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.8, duration: 1 }} className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-10">
+        <div className="w-px h-16 bg-gradient-to-b from-transparent via-white/20 to-transparent relative overflow-hidden">
+          <motion.div animate={{ y: [-20, 64] }} transition={{ repeat: Infinity, duration: 1.5, ease: "linear" }} className="absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b from-transparent to-primary" />
         </div>
-      </div>
+      </motion.div>
     </section>
   )
 }

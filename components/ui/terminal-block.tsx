@@ -4,7 +4,7 @@ import { useEffect, useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 
 const lines = [
-  "Initializing Arcova OS...",
+  "Initializing Nexora OS...",
   "Loading premium design patterns...",
   "Optimizing performance modules...",
   "Success: Systems Ready.",
@@ -45,7 +45,7 @@ export function TerminalBlock() {
           <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/40" />
           <div className="w-2.5 h-2.5 rounded-full bg-green-500/40" />
         </div>
-        <span className="text-[10px] opacity-40 uppercase tracking-widest ml-auto">arcova_v1.0</span>
+        <span className="text-[10px] opacity-40 uppercase tracking-widest ml-auto">nexora_v1.0</span>
       </div>
       
       <div className="p-6 h-32 flex items-center">

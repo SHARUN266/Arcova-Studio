@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     canonical: `${SITE_CONFIG.url}/blog`,
   },
   openGraph: {
-    title: "Blog | Arcova Studio",
+    title: "Blog | Nexora Studio",
     description:
       "Insights on web design, development, and digital growth for local businesses.",
     url: `${SITE_CONFIG.url}/blog`,

@@ -29,7 +29,7 @@ export async function POST(req: Request) {
     });
 
     const mailOptions = {
-      from: `"Arcova Studio Leads" <${process.env.EMAIL_USER}>`,
+      from: `"Nexora Studio Leads" <${process.env.EMAIL_USER}>`,
       to: "sharunattari266@gmail.com",
       subject: `New Lead: ${name} (${finalProjectType})`,
       html: `
@@ -49,7 +49,7 @@ export async function POST(req: Request) {
             </div>
           </div>
           <p style="margin-top: 30px; font-size: 12px; color: #555550; text-align: center;">
-            Sent with ❤️ from Arcova Studio System
+            Sent with ❤️ from Nexora Studio System
           </p>
         </div>
       `,

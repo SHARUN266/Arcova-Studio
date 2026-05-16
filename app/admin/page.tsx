@@ -120,7 +120,7 @@ export default function AdminPage() {
       </div>
 
       <div className="mt-12 text-center text-xs text-muted-foreground/40 font-mono uppercase tracking-[0.2em]">
-        Powered by Gemini 2.0 Flash — Arcova Studio Automation
+        Powered by Gemini 2.0 Flash — Nexora Studio Automation
       </div>
     </div>
   )

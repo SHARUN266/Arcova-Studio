@@ -1,11 +1,11 @@
-# 🏛️ Arcova Studio: The Owner's Manual (Architect's Guide)
+# 🏛️ Nexora Studio: The Owner's Manual (Architect's Guide)
 
-Welcome, Owner. This isn't just a README—it's the **Source of Truth** for Arcova Studio. Whether you're looking at this today or 50 years from now, this document explains exactly how this machine was built, why it works, and how to keep it running at peak performance.
+Welcome, Owner. This isn't just a README—it's the **Source of Truth** for Nexora Studio. Whether you're looking at this today or 50 years from now, this document explains exactly how this machine was built, why it works, and how to keep it running at peak performance.
 
 ---
 
 ## 💎 The Vision
-Arcova Studio is built to be **"Calm yet Premium"**. Every line of code follows a strict modular philosophy: 
+Nexora Studio is built to be **"Calm yet Premium"**. Every line of code follows a strict modular philosophy: 
 1. **Minimalism:** No clutter, only what matters.
 2. **Premium Feel:** Glassmorphism, subtle HSL gradients, and high-end animations.
 3. **Local Identity:** Deeply rooted in Agra's business landscape.
@@ -80,4 +80,4 @@ Arcova Studio is built to be **"Calm yet Premium"**. Every line of code follows 
 ## 📜 Final Owner's Note
 This website uses **Tailwind CSS 4** and **Next.js 15**. It is future-proofed for the modern web. If you ever fee like it's slowing down, check the asset sizes in the `public` folder—always compress your images!
 
-Built with precision for **Arcova Studio**. Stay premium. 🥂
+Built with precision for **Nexora Studio**. Stay premium. 🥂

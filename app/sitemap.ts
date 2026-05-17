@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { CITIES } from "@/lib/seo-data";
 import { getAllPosts } from "@/lib/blog-data";
 
-const BASE_URL = "https://arcovas.com";
+const BASE_URL = "https://nexorastudio.com";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date();

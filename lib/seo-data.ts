@@ -5,7 +5,7 @@
 
 export const SITE_CONFIG = {
   name: "Nexora Studio",
-  url: "https://arcova-studio.vercel.app",
+  url: "https://nexora-studio.vercel.app",
   tagline: "We build what scales.",
   phone: "+91-8279934295", // TODO: Replace with actual phone number
   email: "sharunattari266@gmail.com",

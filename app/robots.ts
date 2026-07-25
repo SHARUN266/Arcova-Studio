@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 
-const BASE_URL = "https://nexorastudio.com";
+const BASE_URL = "https://arcovastudio.com";
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -14,5 +14,3 @@ export default function robots(): MetadataRoute.Robots {
     sitemap: `${BASE_URL}/sitemap.xml`,
   };
 }
-
-

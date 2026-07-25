@@ -34,19 +34,18 @@ export function CustomCursor() {
 
     const handleLinkHover = () => {
       setIsHovering(true)
-      gsap.to(ring, { scale: 2.2, backgroundColor: "rgba(139, 92, 246, 0.08)", duration: 0.4, ease: "power3.out" })
-      gsap.to(cursor, { scale: 0.4, duration: 0.4, ease: "power3.out" })
+      gsap.to(ring, { scale: 2.2, backgroundColor: "rgba(242, 101, 48, 0.1)", borderColor: "rgba(242, 101, 48, 0.4)", duration: 0.4, ease: "power3.out" })
+      gsap.to(cursor, { scale: 0.4, backgroundColor: "#F26530", duration: 0.4, ease: "power3.out" })
     }
 
     const handleLinkLeave = () => {
       setIsHovering(false)
-      gsap.to(ring, { scale: 1, backgroundColor: "transparent", duration: 0.5, ease: "elastic.out(1, 0.4)" })
-      gsap.to(cursor, { scale: 1, duration: 0.5, ease: "elastic.out(1, 0.4)" })
+      gsap.to(ring, { scale: 1, backgroundColor: "transparent", borderColor: "rgba(26, 26, 26, 0.2)", duration: 0.5, ease: "elastic.out(1, 0.4)" })
+      gsap.to(cursor, { scale: 1, backgroundColor: "#1A1A1A", duration: 0.5, ease: "elastic.out(1, 0.4)" })
     }
 
     window.addEventListener("mousemove", moveCursor)
 
-    // MutationObserver-based approach for dynamic elements
     const attachListeners = () => {
       const links = document.querySelectorAll("a, button, .interactive-card, [role='button']")
       links.forEach(link => {
@@ -77,11 +76,11 @@ export function CustomCursor() {
     <>
       <div 
         ref={cursorRef} 
-        className="fixed top-0 left-0 w-3 h-3 bg-white rounded-full pointer-events-none z-[9999] -translate-x-1/2 -translate-y-1/2 hidden md:block mix-blend-difference"
+        className="fixed top-0 left-0 w-3 h-3 bg-[#1A1A1A] rounded-full pointer-events-none z-[9999] -translate-x-1/2 -translate-y-1/2 hidden md:block"
       />
       <div 
         ref={ringRef} 
-        className="fixed top-0 left-0 w-10 h-10 border border-white/20 rounded-full pointer-events-none z-[9998] -translate-x-1/2 -translate-y-1/2 hidden md:block mix-blend-difference"
+        className="fixed top-0 left-0 w-10 h-10 border border-black/20 rounded-full pointer-events-none z-[9998] -translate-x-1/2 -translate-y-1/2 hidden md:block"
       />
     </>
   )

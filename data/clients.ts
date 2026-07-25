@@ -45,7 +45,7 @@ const clients: Client[] = [
     role: "Owner",
     avatar: "", // Leave empty for initials avatar
     location: "Agra",
-    text: "Actually, we were struggling with an old website that didn't show our craft properly. The Nexora team understood how we work and built something that genuinely represents us.",
+    text: "Actually, we were struggling with an old website that didn't show our craft properly. The Arcova team understood how we work and built something that genuinely represents us.",
     tag: "Traditional Business",
     featured: true,
     results: {

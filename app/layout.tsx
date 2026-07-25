@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Geist, Caveat, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Navbar } from "@/components/navbar/navbar";
@@ -7,9 +7,20 @@ import { Footer } from "@/components/footer/footer";
 import { Schema } from "@/components/seo/schema";
 import { SITE_CONFIG } from "@/lib/seo-data";
 
-const inter = Inter({
+const geist = Geist({
   subsets: ["latin"],
-  variable: "--font-inter",
+  variable: "--font-geist",
+});
+
+const caveat = Caveat({
+  subsets: ["latin"],
+  variable: "--font-caveat",
+});
+
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  style: ["normal", "italic"],
+  variable: "--font-playfair",
 });
 
 import { CustomCursor } from "@/components/ui/custom-cursor";
@@ -22,11 +33,11 @@ import { Analytics } from "@vercel/analytics/react";
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_CONFIG.url),
   title: {
-    default: "Nexora Studio | Premium Web Design & Development Agency",
-    template: "%s | Nexora Studio",
+    default: "Arcova Studio | Premium Web Design & Development Agency",
+    template: "%s | Arcova Studio",
   },
   description:
-    "Premium web design and development studio serving businesses across Agra, Mathura, Firozabad, Vrindavan, and Hathras. Fast, modern websites that help you grow online.",
+    "We combine strategy, design, and technology to help ambitious brands stand out & create meaningful digital experiences.",
   icons: {
     icon: "/favicon.png",
     apple: "/logo.png",
@@ -35,9 +46,9 @@ export const metadata: Metadata = {
     canonical: SITE_CONFIG.url,
   },
   openGraph: {
-    title: "Nexora Studio | Premium Web Design & Development Agency",
+    title: "Arcova Studio | Premium Web Design & Development Agency",
     description:
-      "We build fast, modern, and cinematic 3D websites for ambitious brands. Premium quality.",
+      "We design brands that move people. Strategy, design, and technology for ambitious brands.",
     url: SITE_CONFIG.url,
     siteName: SITE_CONFIG.name,
     type: "website",
@@ -47,15 +58,15 @@ export const metadata: Metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Nexora Studio — Premium Web Design & Development",
+        alt: "Arcova Studio — Premium Web Design & Development",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Nexora Studio | Premium Web Design & Development Agency",
+    title: "Arcova Studio | Premium Web Design & Development Agency",
     description:
-      "We build fast, modern, and cinematic 3D websites for ambitious brands.",
+      "We design brands that move people. Strategy, design, and technology for ambitious brands.",
     images: ["/og-image.png"],
   },
   robots: {
@@ -78,18 +89,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning className="overflow-x-hidden">
-      <head>
-        <link href="https://api.fontshare.com/v2/css?f[]=instrument-serif@400,400i&display=swap" rel="stylesheet" />
-      </head>
       <body
-        className={`${inter.variable} font-sans antialiased overflow-x-hidden w-full selection:bg-primary/30 selection:text-white`}
+        className={`${geist.variable} ${caveat.variable} ${playfair.variable} font-sans antialiased overflow-x-hidden w-full bg-[#FAFAF8] text-[#1A1A1A] selection:bg-[#ff6321]/20 selection:text-[#ff6321]`}
       >
         <Schema />
         <Analytics />
         <ThemeProvider
           attribute="class"
-          defaultTheme="dark"
-          forcedTheme="dark"
+          defaultTheme="light"
+          forcedTheme="light"
           disableTransitionOnChange
         >
           <PageTransition />
@@ -98,7 +106,7 @@ export default function RootLayout({
           <WhatsAppButton />
           <Navbar />
           <LenisProvider>
-            <main className="min-h-screen pt-0">
+            <main className="min-h-screen pt-0 bg-[#FAFAF8]">
               {children}
             </main>
             <Footer />

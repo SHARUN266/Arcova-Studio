@@ -1,10 +1,10 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { motion, AnimatePresence } from "framer-motion"
+import { motion } from "framer-motion"
 
 const lines = [
-  "Initializing Nexora OS...",
+  "Initializing Arcova OS...",
   "Loading premium design patterns...",
   "Optimizing performance modules...",
   "Success: Systems Ready.",
@@ -38,29 +38,30 @@ export function TerminalBlock() {
   }, [charIndex, isDeleting, textIndex])
 
   return (
-    <div className="w-full max-w-2xl glass rounded-xl overflow-hidden border border-white/5 shadow-2xl font-mono">
-      <div className="bg-white/5 px-4 py-2 flex items-center gap-2 border-b border-white/5">
+    <div className="w-full max-w-2xl bg-white rounded-xl overflow-hidden border border-gray-200 shadow-md font-mono">
+      <div className="bg-gray-50 px-4 py-2 flex items-center gap-2 border-b border-gray-200">
         <div className="flex gap-1.5">
-          <div className="w-2.5 h-2.5 rounded-full bg-red-500/40" />
-          <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/40" />
-          <div className="w-2.5 h-2.5 rounded-full bg-green-500/40" />
+          <div className="w-2.5 h-2.5 rounded-full bg-red-400" />
+          <div className="w-2.5 h-2.5 rounded-full bg-yellow-400" />
+          <div className="w-2.5 h-2.5 rounded-full bg-green-400" />
         </div>
-        <span className="text-[10px] opacity-40 uppercase tracking-widest ml-auto">nexora_v1.0</span>
+        <span className="text-[10px] opacity-40 uppercase tracking-widest ml-auto">arcova_v1.0</span>
       </div>
       
       <div className="p-6 h-32 flex items-center">
         <div className="flex items-center gap-2 text-sm md:text-base">
-          <span className="text-accent font-bold">$</span>
-          <span className="text-foreground/90">
+          <span className="text-[#F26530] font-bold">$</span>
+          <span className="text-gray-800">
             {lines[textIndex].substring(0, charIndex)}
           </span>
           <motion.div
             animate={{ opacity: [1, 0] }}
             transition={{ duration: 0.8, repeat: Infinity }}
-            className="w-2 h-5 bg-accent"
+            className="w-2 h-5 bg-[#F26530]"
           />
         </div>
       </div>
     </div>
   )
 }
+

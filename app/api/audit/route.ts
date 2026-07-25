@@ -25,7 +25,7 @@ export async function POST(req: Request) {
     });
 
     const prompt = `
-      You are a World-Class Conversion Rate Optimization (CRO) and SEO Specialist working for "Nexora Studio", a premium web design agency in Agra, India.
+      You are a World-Class Conversion Rate Optimization (CRO) and SEO Specialist working for "Arcova Studio", a premium web design agency in India.
       
       Website URL: ${url}
       

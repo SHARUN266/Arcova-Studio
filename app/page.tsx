@@ -8,7 +8,7 @@ import { About } from "@/components/sections/about";
 
 export default function Home() {
   return (
-    <main className="flex flex-col overflow-x-hidden w-full relative max-w-[100vw] bg-[#09090B]">
+    <main className="flex flex-col overflow-x-hidden w-full relative max-w-[100vw] bg-[#FAFAF8]">
       <Hero />
       <About />
       <Services />

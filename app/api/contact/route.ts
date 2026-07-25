@@ -34,17 +34,17 @@ export async function POST(req: Request) {
       subject: `New Lead: ${name} (${finalProjectType})`,
       html: `
         <div style="font-family: sans-serif; background-color: #FAFAF8; color: #1A1A1A; padding: 40px; border-radius: 20px;">
-          <h1 style="color: #F26530; margin-bottom: 20px;">New Project Lead! 🚀</h1>
+          <h1 style="color: #ff6321; margin-bottom: 20px;">New Project Lead! 🚀</h1>
           <div style="background-color: #FFFFFF; padding: 30px; border-radius: 15px; border: 1px solid rgba(0, 0, 0, 0.1);">
-            <p style="margin-bottom: 15px;"><strong style="color: #F26530;">Name:</strong> ${name}</p>
-            <p style="margin-bottom: 15px;"><strong style="color: #F26530;">WhatsApp:</strong> <a href="https://wa.me/91${whatsapp}" style="color: #1A1A1A;">${whatsapp}</a></p>
-            ${business ? `<p style="margin-bottom: 15px;"><strong style="color: #F26530;">Business:</strong> ${business}</p>` : ''}
-            <p style="margin-bottom: 15px;"><strong style="color: #F26530;">Project Type:</strong> ${finalProjectType}</p>
-            <p style="margin-bottom: 15px;"><strong style="color: #F26530;">Budget:</strong> ${finalBudget}</p>
-            <p style="margin-bottom: 15px;"><strong style="color: #F26530;">Prefers WhatsApp:</strong> ${preferWhatsapp ? 'Yes ✅' : 'No ❌'}</p>
+            <p style="margin-bottom: 15px;"><strong style="color: #ff6321;">Name:</strong> ${name}</p>
+            <p style="margin-bottom: 15px;"><strong style="color: #ff6321;">WhatsApp:</strong> <a href="https://wa.me/91${whatsapp}" style="color: #1A1A1A;">${whatsapp}</a></p>
+            ${business ? `<p style="margin-bottom: 15px;"><strong style="color: #ff6321;">Business:</strong> ${business}</p>` : ''}
+            <p style="margin-bottom: 15px;"><strong style="color: #ff6321;">Project Type:</strong> ${finalProjectType}</p>
+            <p style="margin-bottom: 15px;"><strong style="color: #ff6321;">Budget:</strong> ${finalBudget}</p>
+            <p style="margin-bottom: 15px;"><strong style="color: #ff6321;">Prefers WhatsApp:</strong> ${preferWhatsapp ? 'Yes ✅' : 'No ❌'}</p>
             
             <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid rgba(0, 0, 0, 0.1);">
-              <p style="color: #F26530; font-weight: bold; margin-bottom: 10px;">Message:</p>
+              <p style="color: #ff6321; font-weight: bold; margin-bottom: 10px;">Message:</p>
               <p style="line-height: 1.6; color: #1A1A1A;">${finalMessage}</p>
             </div>
           </div>
